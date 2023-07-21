@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nectar/presentation/pages/onboarding_page.dart';
 import 'package:nectar/utils/app_colors.dart';
+import 'package:nectar/utils/app_router.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -13,14 +13,12 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    // after 3 seconds, navigate to onboarding page
+    // after 1 seconds, navigate to onboarding page
     Future.delayed(
-      const Duration(seconds: 3),
-      () => Navigator.pushReplacement(
+      const Duration(seconds: 1),
+      () => Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => const OnboardingPage(),
-        ),
+        AppRouter.onboardingRoute,
       ),
     );
     super.initState();
@@ -36,6 +34,10 @@ class _SplashPageState extends State<SplashPage> {
           children: [
             SvgPicture.asset(
               'assets/svg/carrot.svg',
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
             ),
             const SizedBox(width: 18),
             const Column(

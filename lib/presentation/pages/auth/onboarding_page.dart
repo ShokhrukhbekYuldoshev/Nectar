@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nectar/presentation/pages/signin_page.dart';
 import 'package:nectar/presentation/widgets/default_button.dart';
+import 'package:nectar/utils/app_router.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -23,6 +23,10 @@ class OnboardingPage extends StatelessWidget {
           children: [
             SvgPicture.asset(
               'assets/svg/carrot.svg',
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
             ),
             const SizedBox(height: 35),
             const Text(
@@ -48,11 +52,9 @@ class OnboardingPage extends StatelessWidget {
             DefaultButton(
               text: 'Get Started',
               onTap: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const SigninPage(),
-                  ),
+                  AppRouter.signinRoute,
                 );
               },
             ),

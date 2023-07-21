@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nectar/utils/app_colors.dart';
+import 'package:nectar/utils/app_router.dart';
 import 'presentation/pages/splash_page.dart';
 
 void main() {
@@ -14,9 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Nectar',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
         useMaterial3: true,
       ),
+      onGenerateRoute: AppRouter.onGenerateRoute,
       home: const SplashPage(),
     );
   }
