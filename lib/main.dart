@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nectar/utils/app_colors.dart';
-import 'package:nectar/utils/app_router.dart';
+import 'package:nectar/presentation/utils/app_colors.dart';
+import 'package:nectar/presentation/utils/app_router.dart';
 import 'presentation/pages/splash_page.dart';
 
 void main() {

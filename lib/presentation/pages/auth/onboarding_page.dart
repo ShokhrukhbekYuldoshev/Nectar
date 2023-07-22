@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nectar/presentation/widgets/default_button.dart';
-import 'package:nectar/utils/app_router.dart';
+import 'package:nectar/presentation/utils/assets.dart';
+import 'package:nectar/presentation/widgets/buttons/default_button.dart';
+import 'package:nectar/presentation/utils/app_router.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -13,7 +14,7 @@ class OnboardingPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 90),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/png/onboarding.png'),
+            image: AssetImage(PngAssets.onboarding),
             fit: BoxFit.cover,
           ),
         ),
@@ -22,7 +23,7 @@ class OnboardingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SvgPicture.asset(
-              'assets/svg/carrot.svg',
+              SvgAssets.carrot,
               colorFilter: const ColorFilter.mode(
                 Colors.white,
                 BlendMode.srcIn,

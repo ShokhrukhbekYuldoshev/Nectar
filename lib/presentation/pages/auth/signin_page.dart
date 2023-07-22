@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nectar/presentation/utils/assets.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -27,7 +28,7 @@ class _SigninPageState extends State<SigninPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: SvgPicture.asset("assets/svg/carrot.svg"),
+                child: SvgPicture.asset(SvgAssets.carrot),
               ),
               const SizedBox(height: 100),
               const Text(

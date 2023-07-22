@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:nectar/utils/app_colors.dart';
+import 'package:nectar/presentation/utils/app_colors.dart';
 
 class RegisterPhonePage extends StatelessWidget {
   const RegisterPhonePage({super.key});
@@ -31,12 +31,12 @@ class RegisterPhonePage extends StatelessWidget {
             decoration: const InputDecoration(
               border: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: AppColors.borderGray,
+                  color: AppColors.lightBorderGray,
                 ),
               ),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: AppColors.borderGray,
+                  color: AppColors.lightBorderGray,
                 ),
               ),
               focusedBorder: UnderlineInputBorder(

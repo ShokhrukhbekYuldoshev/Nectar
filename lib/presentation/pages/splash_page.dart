@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nectar/utils/app_colors.dart';
-import 'package:nectar/utils/app_router.dart';
+import 'package:nectar/presentation/utils/app_colors.dart';
+import 'package:nectar/presentation/utils/app_router.dart';
+import 'package:nectar/presentation/utils/assets.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -33,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              'assets/svg/carrot.svg',
+              SvgAssets.carrot,
               colorFilter: const ColorFilter.mode(
                 Colors.white,
                 BlendMode.srcIn,
