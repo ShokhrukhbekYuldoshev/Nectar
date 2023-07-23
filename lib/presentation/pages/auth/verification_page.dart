@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/widgets/buttons/next_fab.dart';
+import 'package:pinput/pinput.dart';
 
-class RegisterPhonePage extends StatefulWidget {
-  const RegisterPhonePage({super.key});
+class VerificationPage extends StatefulWidget {
+  const VerificationPage({super.key});
 
   @override
-  State<RegisterPhonePage> createState() => _RegisterPhonePageState();
+  State<VerificationPage> createState() => _VerificationPageState();
 }
 
-class _RegisterPhonePageState extends State<RegisterPhonePage> {
-  final TextEditingController phoneController = TextEditingController();
-
+class _VerificationPageState extends State<VerificationPage> {
+  final TextEditingController otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: NextFab(
         onPressed: () => Navigator.pushNamed(
           context,
-          '/verification',
-          arguments: phoneController.text,
+          '/select-location',
         ),
       ),
       body: Stack(
@@ -54,42 +52,40 @@ class _RegisterPhonePageState extends State<RegisterPhonePage> {
                 const SizedBox(height: 30),
                 // text
                 const Text(
-                  'Enter your phone number',
+                  'Enter your verification code',
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 30),
-                // label
-                const Text(
-                  'Phone number',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: AppColors.lightGray,
-                  ),
+                // otp field
+                Pinput(
+                  androidSmsAutofillMethod:
+                      AndroidSmsAutofillMethod.smsUserConsentApi,
+                  controller: otpController,
                 ),
-                // intl phone field
-                IntlPhoneField(
-                  controller: phoneController,
-                  initialCountryCode: 'US',
-                  decoration: const InputDecoration(
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: AppColors.lightBorderGray,
+                const SizedBox(height: 30),
+                // resend otp
+                Row(
+                  children: [
+                    const Text(
+                      'Didn\'t receive the code?',
+                      style: TextStyle(
+                        fontSize: 16,
                       ),
                     ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: AppColors.lightBorderGray,
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'Resend',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: AppColors.primary,
+                        ),
                       ),
                     ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: AppColors.primary,
-                      ),
-                    ),
-                  ),
+                  ],
                 ),
               ],
             ),

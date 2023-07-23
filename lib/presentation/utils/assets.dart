@@ -5,8 +5,10 @@ class SvgAssets {
   static const String cart = '${_basePath}cart.svg';
   static const String edit = '${_basePath}edit.svg';
   static const String explore = '${_basePath}explore.svg';
+  static const String facebook = '${_basePath}facebook.svg';
   static const String favorite = '${_basePath}favorite.svg';
   static const String filter = '${_basePath}filter.svg';
+  static const String google = '${_basePath}google.svg';
   static const String help = '${_basePath}help.svg';
   static const String location = '${_basePath}location.svg';
   static const String logout = '${_basePath}logout.svg';

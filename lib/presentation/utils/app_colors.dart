@@ -10,4 +10,6 @@ class AppColors {
   static const Color lightBorderGray = Color(0xFFE2E2E2);
   static const Color grayishLimeGreen = Color(0xFFF2F3F2);
   static const Color star = Color(0xFFF3603F);
+  static const Color googleBlue = Color(0xFF5383EC);
+  static const Color facebookBlue = Color(0xFF4A66AC);
 }

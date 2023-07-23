@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nectar/presentation/pages/auth/select_location_page.dart';
+import 'package:nectar/presentation/pages/auth/verification_page.dart';
 import 'package:nectar/presentation/pages/home/account_page.dart';
 import 'package:nectar/presentation/pages/auth/onboarding_page.dart';
 import 'package:nectar/presentation/pages/auth/register_phone_page.dart';
@@ -26,9 +28,11 @@ class AppRouter {
   static const String productDetailsRoute = '/product-details';
   static const String registerPhoneRoute = '/register-phone';
   static const String searchRoute = '/search';
+  static const String selectLocationRoute = '/select-location';
   static const String signinRoute = '/signin';
   static const String signupRoute = '/signup';
   static const String splashRoute = '/splash';
+  static const String verificationRoute = '/verification';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -76,6 +80,10 @@ class AppRouter {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const SearchPage(),
         );
+      case selectLocationRoute:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const SelectLocationPage(),
+        );
       case signinRoute:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const SigninPage(),
@@ -87,6 +95,10 @@ class AppRouter {
       case splashRoute:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const SplashPage(),
+        );
+      case verificationRoute:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const VerificationPage(),
         );
       default:
         return MaterialPageRoute<dynamic>(

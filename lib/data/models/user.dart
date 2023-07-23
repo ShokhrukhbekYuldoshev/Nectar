@@ -9,6 +9,7 @@ class User extends Equatable {
   final String? photoURL;
   final String phoneNumber;
   final Address address;
+
   const User({
     required this.uid,
     required this.email,

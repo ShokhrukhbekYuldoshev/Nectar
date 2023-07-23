@@ -7,24 +7,29 @@ environment:
   sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
+  bloc: ^8.1.2
   cloud_firestore: ^4.8.3
   equatable: ^2.0.5
   firebase_auth: ^4.7.1
+  firebase_core: ^2.15.0
   firebase_storage: ^11.2.5
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.3
   flutter_facebook_auth: ^6.0.0
   flutter_svg: ^2.0.7
   google_sign_in: ^6.1.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl_phone_field: ^3.2.0
+  pinput: ^2.2.31
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.2
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
@@ -32,3 +37,11 @@ flutter:
   assets:
     - assets/svg/
     - assets/png/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  min_sdk_android: 21
+# dart get
+# dart run flutter_launcher_icons
