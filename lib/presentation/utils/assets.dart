@@ -3,6 +3,7 @@ class SvgAssets {
   static const String about = '${_basePath}about.svg';
   static const String carrot = '${_basePath}carrot.svg';
   static const String cart = '${_basePath}cart.svg';
+  static const String deliveryAddress = '${_basePath}delivery-address.svg';
   static const String edit = '${_basePath}edit.svg';
   static const String explore = '${_basePath}explore.svg';
   static const String facebook = '${_basePath}facebook.svg';
@@ -16,7 +17,7 @@ class SvgAssets {
   static const String notification = '${_basePath}notification.svg';
   static const String orders = '${_basePath}orders.svg';
   static const String payment = '${_basePath}payment.svg';
-  static const String promoCard = '${_basePath}promo-card.svg';
+  static const String promoCode = '${_basePath}promo-code.svg';
   static const String search = '${_basePath}search.svg';
   static const String selectLocation = '${_basePath}select-location.svg';
   static const String share = '${_basePath}share.svg';

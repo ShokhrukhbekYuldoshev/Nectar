@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   bloc: ^8.1.2
+  cached_network_image: ^3.2.3
+  carousel_slider: ^4.2.1
   cloud_firestore: ^4.8.3
   equatable: ^2.0.5
   firebase_auth: ^4.7.1
@@ -22,7 +24,9 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl_phone_field: ^3.2.0
+  package_info_plus: ^4.0.2
   pinput: ^2.2.31
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -43,5 +47,5 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/icon/icon.png"
   min_sdk_android: 21
-# dart get
+# dart pub get
 # dart run flutter_launcher_icons

@@ -110,14 +110,14 @@ class _SigninPageState extends State<SigninPage> {
                   ),
                   const SizedBox(height: 20),
                   DefaultButton(
-                    text: "Sign in with Google",
+                    text: "Continue with Google",
                     onTap: () {},
                     backgroundColor: AppColors.googleBlue,
                     leading: SvgPicture.asset(SvgAssets.google),
                   ),
                   const SizedBox(height: 20),
                   DefaultButton(
-                    text: "Sign in with Facebook",
+                    text: "Continue with Facebook",
                     onTap: () {},
                     backgroundColor: AppColors.facebookBlue,
                     leading: SvgPicture.asset(SvgAssets.facebook),

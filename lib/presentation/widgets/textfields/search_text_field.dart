@@ -7,11 +7,11 @@ class SearchTextField extends StatelessWidget {
   final String hintText;
 
   const SearchTextField({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.controller,
     required this.hintText,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
