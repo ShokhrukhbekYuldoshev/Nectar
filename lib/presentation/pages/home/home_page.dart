@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nectar/presentation/pages/explore/explore_page.dart';
-import 'package:nectar/presentation/pages/home/account_page.dart';
+import 'package:nectar/presentation/pages/account/account_page.dart';
+import 'package:nectar/presentation/pages/home/favorites_page.dart';
 import 'package:nectar/presentation/pages/home/shop_page.dart';
+import 'package:nectar/presentation/pages/order/cart_page.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 
 class HomePage extends StatefulWidget {
@@ -105,12 +107,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: IndexedStack(
         index: selectedIndex,
-        children: [
-          const ShopPage(),
-          const ExplorePage(),
-          Container(color: Colors.blue),
-          Container(color: Colors.yellow),
-          const AccountPage(),
+        children: const [
+          ShopPage(),
+          ExplorePage(),
+          CartPage(),
+          FavoritesPage(),
+          AccountPage(),
         ],
       ),
     );

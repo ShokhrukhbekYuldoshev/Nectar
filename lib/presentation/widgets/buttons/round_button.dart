@@ -14,20 +14,24 @@ class RoundButton extends StatelessWidget {
     required this.onTap,
     this.backgroundColor = AppColors.primary,
     this.iconColor = Colors.white,
-    this.borderColor = AppColors.darkBorderGray,
+    this.borderColor = Colors.transparent,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 45,
-        height: 45,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(17),
-          color: backgroundColor,
+    return Ink(
+      width: 45,
+      height: 45,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(17),
+        color: backgroundColor,
+        border: Border.all(
+          color: borderColor!,
         ),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(17),
         child: Icon(
           icon,
           color: iconColor,

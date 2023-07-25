@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar/firebase_options.dart';
+import 'package:nectar/presentation/pages/home/home_page.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
 import 'presentation/pages/splash_page.dart';
@@ -25,9 +26,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
         useMaterial3: true,
+        checkboxTheme: CheckboxThemeData(
+          fillColor: MaterialStateProperty.all<Color>(
+            AppColors.primary,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ),
       ),
       onGenerateRoute: AppRouter.onGenerateRoute,
-      home: const SplashPage(),
+      home: const HomePage(),
     );
   }
 }

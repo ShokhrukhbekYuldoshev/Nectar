@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:nectar/presentation/pages/auth/select_location_page.dart';
 import 'package:nectar/presentation/pages/auth/verification_page.dart';
 import 'package:nectar/presentation/pages/account/about_page.dart';
-import 'package:nectar/presentation/pages/home/account_page.dart';
+import 'package:nectar/presentation/pages/account/account_page.dart';
 import 'package:nectar/presentation/pages/auth/onboarding_page.dart';
 import 'package:nectar/presentation/pages/auth/register_phone_page.dart';
 import 'package:nectar/presentation/pages/auth/signup_page.dart';
-import 'package:nectar/presentation/pages/explore/category_products_pages.dart';
-import 'package:nectar/presentation/pages/home/delivery_address_page.dart';
-import 'package:nectar/presentation/pages/home/help_page.dart';
-import 'package:nectar/presentation/pages/home/my_details_page.dart';
-import 'package:nectar/presentation/pages/home/notifications_page.dart';
-import 'package:nectar/presentation/pages/home/payment_methods_page.dart';
-import 'package:nectar/presentation/pages/home/promo_codes_page.dart';
+import 'package:nectar/presentation/pages/explore/products_page.dart';
+import 'package:nectar/presentation/pages/account/delivery_address_page.dart';
+import 'package:nectar/presentation/pages/account/help_page.dart';
+import 'package:nectar/presentation/pages/account/my_details_page.dart';
+import 'package:nectar/presentation/pages/account/notifications_page.dart';
+import 'package:nectar/presentation/pages/account/payment_methods_page.dart';
+import 'package:nectar/presentation/pages/account/promo_codes_page.dart';
 import 'package:nectar/presentation/pages/order/cart_page.dart';
 import 'package:nectar/presentation/pages/auth/signin_page.dart';
 import 'package:nectar/presentation/pages/explore/explore_page.dart';
@@ -27,7 +27,7 @@ import 'package:nectar/presentation/pages/splash_page.dart';
 class AppRouter {
   static const String aboutRoute = '/about';
   static const String accountRoute = '/account';
-  static const String categoryProductsRoute = '/category-products';
+  static const String productsRoute = '/products';
   static const String cartRoute = '/cart';
   static const String deliveryAddressRoute = '/delivery-address';
   static const String exploreRoute = '/explore';
@@ -60,9 +60,9 @@ class AppRouter {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const AccountPage(),
         );
-      case categoryProductsRoute:
+      case productsRoute:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const CategoryProductsPage(),
+          builder: (_) => ProductsPage(title: settings.arguments as String),
         );
       case cartRoute:
         return MaterialPageRoute<dynamic>(

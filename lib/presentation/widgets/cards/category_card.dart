@@ -6,13 +6,11 @@ import 'package:flutter/material.dart';
 class CategoryCard extends StatelessWidget {
   final String title;
   final String imageUrl;
-  final VoidCallback onPressed;
 
   const CategoryCard({
     super.key,
     required this.title,
     required this.imageUrl,
-    required this.onPressed,
   });
 
   @override
@@ -43,7 +41,9 @@ class CategoryCard extends StatelessWidget {
     final Color randomColor = colors[Random().nextInt(colors.length)];
 
     return InkWell(
-      onTap: onPressed,
+      onTap: () {
+        Navigator.pushNamed(context, '/products', arguments: title);
+      },
       borderRadius: BorderRadius.circular(18),
       child: Container(
         padding: const EdgeInsets.only(
