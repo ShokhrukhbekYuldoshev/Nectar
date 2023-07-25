@@ -6,17 +6,21 @@ class User extends Equatable {
   final String uid;
   final String email;
   final String displayName;
-  final String? photoURL;
+  final String? photoUrl;
   final String phoneNumber;
   final Address address;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   const User({
     required this.uid,
     required this.email,
     required this.displayName,
-    this.photoURL,
+    this.photoUrl,
     required this.phoneNumber,
     required this.address,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   User copyWith({
@@ -26,14 +30,18 @@ class User extends Equatable {
     String? photoURL,
     String? phoneNumber,
     Address? address,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return User(
       uid: uid ?? this.uid,
       email: email ?? this.email,
       displayName: displayName ?? this.displayName,
-      photoURL: photoURL ?? this.photoURL,
+      photoUrl: photoURL ?? this.photoUrl,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       address: address ?? this.address,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
@@ -42,9 +50,11 @@ class User extends Equatable {
       'uid': uid,
       'email': email,
       'displayName': displayName,
-      'photoURL': photoURL,
+      'photoURL': photoUrl,
       'phoneNumber': phoneNumber,
       'address': address.toMap(),
+      'createdAt': createdAt.millisecondsSinceEpoch,
+      'updatedAt': updatedAt.millisecondsSinceEpoch,
     };
   }
 
@@ -53,9 +63,11 @@ class User extends Equatable {
       uid: map['uid'] as String,
       email: map['email'] as String,
       displayName: map['displayName'] as String,
-      photoURL: map['photoURL'] != null ? map['photoURL'] as String : null,
+      photoUrl: map['photoURL'] != null ? map['photoURL'] as String : null,
       phoneNumber: map['phoneNumber'] as String,
       address: Address.fromMap(map['address'] as Map<String, dynamic>),
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
+      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
     );
   }
 
@@ -72,8 +84,10 @@ class User extends Equatable {
         uid,
         email,
         displayName,
-        photoURL,
+        photoUrl,
         phoneNumber,
         address,
+        createdAt,
+        updatedAt,
       ];
 }

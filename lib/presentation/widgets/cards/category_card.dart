@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar/presentation/utils/app_router.dart';
 
 class CategoryCard extends StatelessWidget {
   final String title;
@@ -42,7 +43,7 @@ class CategoryCard extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/products', arguments: title);
+        Navigator.pushNamed(context, AppRouter.productsRoute, arguments: title);
       },
       borderRadius: BorderRadius.circular(18),
       child: Container(

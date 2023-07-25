@@ -32,14 +32,21 @@ class CartPage extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 3,
               itemBuilder: (context, index) {
-                return const CartItem(
+                return CartItem(
                   product: Product(
                     name: 'Organic Bananas',
                     price: 4.99,
-                    unit: Unit(symbol: 'kg', name: 'kilogram'),
-                    images: [
+                    unit: Unit(
+                      symbol: 'kg',
+                      name: 'kilogram',
+                      createdAt: DateTime.now(),
+                      updatedAt: DateTime.now(),
+                    ),
+                    images: const [
                       'https://healthiersteps.com/wp-content/uploads/2021/12/green-apple-benefits.jpeg',
                     ],
+                    createdAt: DateTime.now(),
+                    updatedAt: DateTime.now(),
                   ),
                 );
               },

@@ -25,7 +25,7 @@ dependencies:
   hive_flutter: ^1.1.0
   intl_phone_field: ^3.2.0
   package_info_plus: ^4.0.2
-  pinput: ^2.2.31
+  pinput: ^2.3.0
   smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
@@ -43,9 +43,11 @@ flutter:
     - assets/png/
 
 flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
   image_path: "assets/icon/icon.png"
-  min_sdk_android: 21
+  android:
+    adaptive_icon_background: "#FFA500"
+    adaptive_icon_foreground: "assets/icon/icon.png"
+    min_sdk_android: 21
+  ios:
 # dart pub get
 # dart run flutter_launcher_icons

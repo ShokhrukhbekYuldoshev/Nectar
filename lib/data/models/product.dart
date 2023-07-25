@@ -13,6 +13,8 @@ class Product extends Equatable {
   final Category? category;
   final String? brand;
   final Map<String, double>? nutritions;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   const Product({
     required this.name,
@@ -23,6 +25,8 @@ class Product extends Equatable {
     this.category,
     this.brand,
     this.nutritions,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   Product copyWith({
@@ -34,6 +38,8 @@ class Product extends Equatable {
     Category? category,
     String? brand,
     Map<String, double>? nutritions,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return Product(
       name: name ?? this.name,
@@ -44,6 +50,8 @@ class Product extends Equatable {
       category: category ?? this.category,
       brand: brand ?? this.brand,
       nutritions: nutritions ?? this.nutritions,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
@@ -57,6 +65,8 @@ class Product extends Equatable {
       'category': category,
       'brand': brand,
       'nutritions': nutritions,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
@@ -77,6 +87,8 @@ class Product extends Equatable {
       nutritions: map['nutritions'] != null
           ? Map<String, double>.from((map['nutritions'] as Map<String, double>))
           : null,
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
+      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
     );
   }
 
@@ -99,6 +111,8 @@ class Product extends Equatable {
       category,
       brand,
       nutritions,
+      createdAt,
+      updatedAt,
     ];
   }
 }

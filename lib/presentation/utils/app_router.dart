@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:nectar/presentation/pages/auth/forgot_password_page.dart';
 import 'package:nectar/presentation/pages/auth/select_location_page.dart';
 import 'package:nectar/presentation/pages/auth/verification_page.dart';
 import 'package:nectar/presentation/pages/account/about_page.dart';
 import 'package:nectar/presentation/pages/account/account_page.dart';
 import 'package:nectar/presentation/pages/auth/onboarding_page.dart';
 import 'package:nectar/presentation/pages/auth/register_phone_page.dart';
-import 'package:nectar/presentation/pages/auth/signup_page.dart';
+import 'package:nectar/presentation/pages/auth/register_page.dart';
 import 'package:nectar/presentation/pages/explore/products_page.dart';
 import 'package:nectar/presentation/pages/account/delivery_address_page.dart';
 import 'package:nectar/presentation/pages/account/help_page.dart';
@@ -14,7 +15,7 @@ import 'package:nectar/presentation/pages/account/notifications_page.dart';
 import 'package:nectar/presentation/pages/account/payment_methods_page.dart';
 import 'package:nectar/presentation/pages/account/promo_codes_page.dart';
 import 'package:nectar/presentation/pages/order/cart_page.dart';
-import 'package:nectar/presentation/pages/auth/signin_page.dart';
+import 'package:nectar/presentation/pages/auth/login_page.dart';
 import 'package:nectar/presentation/pages/explore/explore_page.dart';
 import 'package:nectar/presentation/pages/home/favorites_page.dart';
 import 'package:nectar/presentation/pages/home/home_page.dart';
@@ -32,6 +33,7 @@ class AppRouter {
   static const String deliveryAddressRoute = '/delivery-address';
   static const String exploreRoute = '/explore';
   static const String favoritesRoute = '/favorite';
+  static const String forgotPasswordRoute = '/forgot-password';
   static const String helpRoute = '/help';
   static const String homeRoute = '/home';
   static const String myDetailsRoute = '/my-details';
@@ -45,8 +47,8 @@ class AppRouter {
   static const String registerPhoneRoute = '/register-phone';
   static const String searchRoute = '/search';
   static const String selectLocationRoute = '/select-location';
-  static const String signinRoute = '/signin';
-  static const String signupRoute = '/signup';
+  static const String loginRoute = '/login';
+  static const String registerRoute = '/register';
   static const String splashRoute = '/splash';
   static const String verificationRoute = '/verification';
 
@@ -79,6 +81,10 @@ class AppRouter {
       case favoritesRoute:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const FavoritesPage(),
+        );
+      case forgotPasswordRoute:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const ForgotPasswordPage(),
         );
       case helpRoute:
         return MaterialPageRoute<dynamic>(
@@ -132,13 +138,13 @@ class AppRouter {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const SelectLocationPage(),
         );
-      case signinRoute:
+      case loginRoute:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const SigninPage(),
+          builder: (_) => const LoginPage(),
         );
-      case signupRoute:
+      case registerRoute:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const SignupPage(),
+          builder: (_) => const RegisterPage(),
         );
       case splashRoute:
         return MaterialPageRoute<dynamic>(

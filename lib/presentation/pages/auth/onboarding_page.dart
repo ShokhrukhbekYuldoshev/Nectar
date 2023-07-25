@@ -55,7 +55,7 @@ class OnboardingPage extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  AppRouter.signinRoute,
+                  AppRouter.loginRoute,
                 );
               },
             ),

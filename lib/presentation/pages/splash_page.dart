@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hive/hive.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
+
+import '../../data/models/user.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -19,10 +22,20 @@ class _SplashPageState extends State<SplashPage> {
       const Duration(seconds: 1),
       () => Navigator.pushReplacementNamed(
         context,
-        AppRouter.onboardingRoute,
+        isUserRegistered() ? AppRouter.homeRoute : AppRouter.onboardingRoute,
       ),
     );
     super.initState();
+  }
+
+  bool isUserRegistered() {
+    User? user = Hive.box('myBox').get('user');
+
+    if (user == null) {
+      return false;
+    } else {
+      return user.address.isEmpty ? false : true;
+    }
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
+import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/widgets/buttons/next_fab.dart';
 import 'package:pinput/pinput.dart';
@@ -19,7 +20,7 @@ class _VerificationPageState extends State<VerificationPage> {
       floatingActionButton: NextFab(
         onPressed: () => Navigator.pushNamed(
           context,
-          '/select-location',
+          AppRouter.selectLocationRoute,
         ),
       ),
       body: Stack(

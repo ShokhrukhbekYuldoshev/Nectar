@@ -1,7 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:nectar/bloc/forgot_password/forgot_password_bloc.dart';
+import 'package:nectar/bloc/login/login_bloc.dart';
+import 'package:nectar/bloc/register/register_bloc.dart';
+import 'package:nectar/data/services/hive_adapters.dart';
 import 'package:nectar/firebase_options.dart';
-import 'package:nectar/presentation/pages/home/home_page.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
 import 'presentation/pages/splash_page.dart';
@@ -12,7 +17,28 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+
+  await Hive.initFlutter();
+  await Hive.openBox('myBox');
+
+  registerAdapters();
+
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => RegisterBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ForgotPasswordBloc(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +62,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       onGenerateRoute: AppRouter.onGenerateRoute,
-      home: const HomePage(),
+      home: const SplashPage(),
     );
   }
 }

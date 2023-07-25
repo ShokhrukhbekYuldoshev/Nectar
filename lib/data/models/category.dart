@@ -6,22 +6,30 @@ class Category extends Equatable {
   final String name;
   final String? description;
   final String? image;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   const Category({
     required this.name,
     this.description,
     this.image,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   Category copyWith({
     String? name,
     String? description,
     String? image,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return Category(
       name: name ?? this.name,
       description: description ?? this.description,
       image: image ?? this.image,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
@@ -30,6 +38,8 @@ class Category extends Equatable {
       'name': name,
       'description': description,
       'image': image,
+      'createdAt': createdAt.millisecondsSinceEpoch,
+      'updatedAt': updatedAt.millisecondsSinceEpoch,
     };
   }
 
@@ -39,6 +49,8 @@ class Category extends Equatable {
       description:
           map['description'] != null ? map['description'] as String : null,
       image: map['image'] != null ? map['image'] as String : null,
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
+      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
     );
   }
 
@@ -51,5 +63,5 @@ class Category extends Equatable {
       Category.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  List<Object?> get props => [name, description, image];
+  List<Object?> get props => [name, description, image, createdAt, updatedAt];
 }

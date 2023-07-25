@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
+import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 
 class AccountPage extends StatelessWidget {
@@ -17,18 +18,32 @@ class AccountPage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              const Row(
+              Row(
                 children: [
-                  SizedBox(width: 25),
+                  const SizedBox(width: 25),
                   // image
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(
-                      'https://gweb-research-imagen.web.app/compositional/An%20oil%20painting%20of%20a%20British%20Shorthair%20cat%20wearing%20a%20cowboy%20hat%20and%20red%20shirt%20skateboarding%20on%20a%20beach./1_.jpeg',
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            child: Image.network(
+                              'https://gweb-research-imagen.web.app/compositional/An%20oil%20painting%20of%20a%20British%20Shorthair%20cat%20wearing%20a%20cowboy%20hat%20and%20red%20shirt%20skateboarding%20on%20a%20beach./1_.jpeg',
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: const CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(
+                        'https://gweb-research-imagen.web.app/compositional/An%20oil%20painting%20of%20a%20British%20Shorthair%20cat%20wearing%20a%20cowboy%20hat%20and%20red%20shirt%20skateboarding%20on%20a%20beach./1_.jpeg',
+                      ),
                     ),
                   ),
-                  SizedBox(width: 20),
-                  Expanded(
+                  const SizedBox(width: 20),
+                  const Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -73,7 +88,7 @@ class AccountPage extends StatelessWidget {
                 title: const Text('Orders'),
                 onTap: () {
                   // navigate to orders page
-                  Navigator.of(context).pushNamed('/orders');
+                  Navigator.of(context).pushNamed(AppRouter.ordersRoute);
                 },
               ),
               const Divider(height: 1),
@@ -91,7 +106,7 @@ class AccountPage extends StatelessWidget {
                 title: const Text('My Details'),
                 onTap: () {
                   // navigate to details page
-                  Navigator.of(context).pushNamed('/my-details');
+                  Navigator.of(context).pushNamed(AppRouter.myDetailsRoute);
                 },
               ),
               const Divider(height: 1),
@@ -109,7 +124,8 @@ class AccountPage extends StatelessWidget {
                 title: const Text('Delivery Address'),
                 onTap: () {
                   // navigate to address page
-                  Navigator.of(context).pushNamed('/delivery-address');
+                  Navigator.of(context)
+                      .pushNamed(AppRouter.deliveryAddressRoute);
                 },
               ),
               const Divider(height: 1),
@@ -127,7 +143,8 @@ class AccountPage extends StatelessWidget {
                 title: const Text('Payment Methods'),
                 onTap: () {
                   // navigate to payment methods page
-                  Navigator.of(context).pushNamed('/payment-methods');
+                  Navigator.of(context)
+                      .pushNamed(AppRouter.paymentMethodsRoute);
                 },
               ),
               const Divider(height: 1),
@@ -145,7 +162,7 @@ class AccountPage extends StatelessWidget {
                 title: const Text('Promo Codes'),
                 onTap: () {
                   // navigate to promo codes page
-                  Navigator.of(context).pushNamed('/promo-codes');
+                  Navigator.of(context).pushNamed(AppRouter.promoCodesRoute);
                 },
               ),
               const Divider(height: 1),
@@ -163,7 +180,7 @@ class AccountPage extends StatelessWidget {
                 title: const Text('Notifications'),
                 onTap: () {
                   // navigate to notifications page
-                  Navigator.of(context).pushNamed('/notifications');
+                  Navigator.of(context).pushNamed(AppRouter.notificationsRoute);
                 },
               ),
               const Divider(height: 1),
@@ -181,7 +198,7 @@ class AccountPage extends StatelessWidget {
                 title: const Text('Help'),
                 onTap: () {
                   // navigate to help page
-                  Navigator.of(context).pushNamed('/help');
+                  Navigator.of(context).pushNamed(AppRouter.helpRoute);
                 },
               ),
               const Divider(height: 1),
@@ -199,7 +216,7 @@ class AccountPage extends StatelessWidget {
                 title: const Text('About'),
                 onTap: () {
                   // navigate to about page
-                  Navigator.of(context).pushNamed('/about');
+                  Navigator.of(context).pushNamed(AppRouter.aboutRoute);
                 },
               ),
               const Divider(height: 1),
@@ -232,7 +249,33 @@ class LogoutButton extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
-        onTap: () {},
+        onTap: () {
+          // show logout dialog
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Logout'),
+                content: const Text('Are you sure you want to logout?'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      // close dialog
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      // TODO: logout
+                    },
+                    child: const Text('Logout'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
         child: Container(
           padding: const EdgeInsets.all(20),
           child: const Row(

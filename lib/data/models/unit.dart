@@ -6,10 +6,14 @@ class Unit extends Equatable {
   // product unit: kg, g, l, ml, etc.
   final String name;
   final String symbol;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   const Unit({
     required this.name,
     required this.symbol,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   Unit copyWith({
@@ -19,6 +23,8 @@ class Unit extends Equatable {
     return Unit(
       name: name ?? this.name,
       symbol: symbol ?? this.symbol,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
     );
   }
 
@@ -26,6 +32,8 @@ class Unit extends Equatable {
     return <String, dynamic>{
       'name': name,
       'symbol': symbol,
+      'createdAt': createdAt.millisecondsSinceEpoch,
+      'updatedAt': updatedAt.millisecondsSinceEpoch,
     };
   }
 
@@ -33,6 +41,8 @@ class Unit extends Equatable {
     return Unit(
       name: map['name'] as String,
       symbol: map['symbol'] as String,
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
+      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
     );
   }
 
@@ -45,5 +55,5 @@ class Unit extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [name, symbol];
+  List<Object> get props => [name, symbol, createdAt, updatedAt];
 }

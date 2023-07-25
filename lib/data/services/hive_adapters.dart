@@ -11,6 +11,9 @@ void registerAdapters() {
   Hive.registerAdapter(FirestoreDocumentReferenceAdapter());
   Hive.registerAdapter(AddressAdapter());
   Hive.registerAdapter(UserAdapter());
+  Hive.registerAdapter(CategoryAdapter());
+  Hive.registerAdapter(UnitAdapter());
+  Hive.registerAdapter(ProductAdapter());
 }
 
 class FirestoreDocumentReferenceAdapter extends TypeAdapter<DocumentReference> {
@@ -38,6 +41,8 @@ class AddressAdapter extends TypeAdapter<Address> {
       country: reader.read(),
       city: reader.read(),
       street: reader.read(),
+      createdAt: reader.read(),
+      updatedAt: reader.read(),
     );
   }
 
@@ -46,6 +51,8 @@ class AddressAdapter extends TypeAdapter<Address> {
     writer.write(obj.country);
     writer.write(obj.city);
     writer.write(obj.street);
+    writer.write(obj.createdAt);
+    writer.write(obj.updatedAt);
   }
 }
 
@@ -59,9 +66,11 @@ class UserAdapter extends TypeAdapter<User> {
       uid: reader.read(),
       email: reader.read(),
       displayName: reader.read(),
-      photoURL: reader.read(),
+      photoUrl: reader.read(),
       phoneNumber: reader.read(),
       address: reader.read(),
+      createdAt: reader.read(),
+      updatedAt: reader.read(),
     );
   }
 
@@ -70,9 +79,11 @@ class UserAdapter extends TypeAdapter<User> {
     writer.write(obj.uid);
     writer.write(obj.email);
     writer.write(obj.displayName);
-    writer.write(obj.photoURL);
+    writer.write(obj.photoUrl);
     writer.write(obj.phoneNumber);
     writer.write(obj.address);
+    writer.write(obj.createdAt);
+    writer.write(obj.updatedAt);
   }
 }
 
@@ -86,6 +97,8 @@ class CategoryAdapter extends TypeAdapter<Category> {
       name: reader.read(),
       description: reader.read(),
       image: reader.read(),
+      createdAt: reader.read(),
+      updatedAt: reader.read(),
     );
   }
 
@@ -94,6 +107,8 @@ class CategoryAdapter extends TypeAdapter<Category> {
     writer.write(obj.name);
     writer.write(obj.description);
     writer.write(obj.image);
+    writer.write(obj.createdAt);
+    writer.write(obj.updatedAt);
   }
 }
 
@@ -106,6 +121,8 @@ class UnitAdapter extends TypeAdapter<Unit> {
     return Unit(
       name: reader.read(),
       symbol: reader.read(),
+      createdAt: reader.read(),
+      updatedAt: reader.read(),
     );
   }
 
@@ -113,6 +130,8 @@ class UnitAdapter extends TypeAdapter<Unit> {
   void write(BinaryWriter writer, Unit obj) {
     writer.write(obj.name);
     writer.write(obj.symbol);
+    writer.write(obj.createdAt);
+    writer.write(obj.updatedAt);
   }
 }
 
@@ -131,6 +150,8 @@ class ProductAdapter extends TypeAdapter<Product> {
       category: reader.read(),
       brand: reader.read(),
       nutritions: reader.read(),
+      createdAt: reader.read(),
+      updatedAt: reader.read(),
     );
   }
 
@@ -144,5 +165,7 @@ class ProductAdapter extends TypeAdapter<Product> {
     writer.write(obj.category);
     writer.write(obj.brand);
     writer.write(obj.nutritions);
+    writer.write(obj.createdAt);
+    writer.write(obj.updatedAt);
   }
 }

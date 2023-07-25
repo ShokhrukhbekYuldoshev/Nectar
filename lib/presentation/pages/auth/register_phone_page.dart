@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
+import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/widgets/buttons/next_fab.dart';
 
@@ -12,7 +14,9 @@ class RegisterPhonePage extends StatefulWidget {
 }
 
 class _RegisterPhonePageState extends State<RegisterPhonePage> {
-  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController(
+    text: Hive.box('myBox').get('phone', defaultValue: ''),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class _RegisterPhonePageState extends State<RegisterPhonePage> {
       floatingActionButton: NextFab(
         onPressed: () => Navigator.pushNamed(
           context,
-          '/verification',
+          AppRouter.verificationRoute,
           arguments: phoneController.text,
         ),
       ),
