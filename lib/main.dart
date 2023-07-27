@@ -2,9 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:nectar/bloc/account/account_bloc.dart';
 import 'package:nectar/bloc/forgot_password/forgot_password_bloc.dart';
 import 'package:nectar/bloc/login/login_bloc.dart';
 import 'package:nectar/bloc/register/register_bloc.dart';
+import 'package:nectar/bloc/register_phone/register_phone_bloc.dart';
 import 'package:nectar/data/services/hive_adapters.dart';
 import 'package:nectar/firebase_options.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
@@ -19,9 +21,8 @@ Future<void> main() async {
   );
 
   await Hive.initFlutter();
-  await Hive.openBox('myBox');
-
   registerAdapters();
+  await Hive.openBox('myBox');
 
   runApp(
     MultiBlocProvider(
@@ -34,6 +35,12 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (context) => ForgotPasswordBloc(),
+        ),
+        BlocProvider(
+          create: (context) => RegisterPhoneBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AccountBloc(),
         ),
       ],
       child: const MyApp(),

@@ -2,17 +2,18 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:nectar/data/models/address.dart';
 
+// ignore: must_be_immutable
 class User extends Equatable {
   final String uid;
   final String email;
   final String displayName;
   final String? photoUrl;
-  final String phoneNumber;
-  final Address address;
+  String phoneNumber;
+  Address address;
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  const User({
+  User({
     required this.uid,
     required this.email,
     required this.displayName,
@@ -37,7 +38,7 @@ class User extends Equatable {
       uid: uid ?? this.uid,
       email: email ?? this.email,
       displayName: displayName ?? this.displayName,
-      photoUrl: photoURL ?? this.photoUrl,
+      photoUrl: photoURL,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       address: address ?? this.address,
       createdAt: createdAt ?? this.createdAt,

@@ -1,12 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nectar/bloc/register_phone/register_phone_bloc.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
-import 'package:nectar/presentation/widgets/buttons/next_fab.dart';
 import 'package:pinput/pinput.dart';
 
 class VerificationPage extends StatefulWidget {
-  const VerificationPage({super.key});
+  final String verificationId;
+  const VerificationPage({Key? key, required this.verificationId})
+      : super(key: key);
 
   @override
   State<VerificationPage> createState() => _VerificationPageState();
@@ -14,15 +18,10 @@ class VerificationPage extends StatefulWidget {
 
 class _VerificationPageState extends State<VerificationPage> {
   final TextEditingController otpController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: NextFab(
-        onPressed: () => Navigator.pushNamed(
-          context,
-          AppRouter.selectLocationRoute,
-        ),
-      ),
       body: Stack(
         children: [
           Positioned.fill(
@@ -62,9 +61,28 @@ class _VerificationPageState extends State<VerificationPage> {
                 const SizedBox(height: 30),
                 // otp field
                 Pinput(
+                  length: 6,
                   androidSmsAutofillMethod:
                       AndroidSmsAutofillMethod.smsUserConsentApi,
                   controller: otpController,
+                  onCompleted: (otp) {
+                    // Verify otp
+                    context.read<RegisterPhoneBloc>().add(
+                          VerifyPhoneWithCredential(
+                            credential: PhoneAuthProvider.credential(
+                              verificationId: widget.verificationId,
+                              smsCode: otp,
+                            ),
+                            onVerified: () {
+                              // Navigate to select location page
+                              Navigator.pushNamed(
+                                context,
+                                AppRouter.selectLocationRoute,
+                              );
+                            },
+                          ),
+                        );
+                  },
                 ),
                 const SizedBox(height: 30),
                 // resend otp
@@ -77,7 +95,9 @@ class _VerificationPageState extends State<VerificationPage> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Resend verification code
+                      },
                       child: const Text(
                         'Resend',
                         style: TextStyle(

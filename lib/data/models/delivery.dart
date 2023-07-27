@@ -1,0 +1,1 @@
+enum DeliveryMethod { delivery, pickup }

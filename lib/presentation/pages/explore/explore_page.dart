@@ -46,7 +46,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 20,
                 childAspectRatio: 0.8,
-                children: [
+                children: const [
                   CategoryCard(
                     title: 'Fruits & Vegetables',
                     imageUrl:

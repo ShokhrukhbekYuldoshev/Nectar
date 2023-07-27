@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:nectar/data/models/address.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/widgets/cards/product_card.dart';
@@ -24,6 +26,7 @@ class _ShopPageState extends State<ShopPage> {
   int activeBannerIndex = 0;
   @override
   Widget build(BuildContext context) {
+    Address _address = Hive.box('myBox').get('user').address as Address;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: SingleChildScrollView(
@@ -51,9 +54,9 @@ class _ShopPageState extends State<ShopPage> {
                   children: [
                     SvgPicture.asset(SvgAssets.location),
                     const SizedBox(width: 5),
-                    const Text(
-                      'New York, USA',
-                      style: TextStyle(
+                    Text(
+                      '${_address.city}, ${_address.country}',
+                      style: const TextStyle(
                         fontSize: 18,
                       ),
                     ),

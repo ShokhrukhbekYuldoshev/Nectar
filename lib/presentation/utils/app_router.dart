@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nectar/presentation/pages/auth/forgot_password_page.dart';
 import 'package:nectar/presentation/pages/auth/select_location_page.dart';
 import 'package:nectar/presentation/pages/auth/verification_page.dart';
@@ -14,6 +15,7 @@ import 'package:nectar/presentation/pages/account/my_details_page.dart';
 import 'package:nectar/presentation/pages/account/notifications_page.dart';
 import 'package:nectar/presentation/pages/account/payment_methods_page.dart';
 import 'package:nectar/presentation/pages/account/promo_codes_page.dart';
+import 'package:nectar/presentation/pages/map/set_location_map_page.dart';
 import 'package:nectar/presentation/pages/order/cart_page.dart';
 import 'package:nectar/presentation/pages/auth/login_page.dart';
 import 'package:nectar/presentation/pages/explore/explore_page.dart';
@@ -47,6 +49,7 @@ class AppRouter {
   static const String registerPhoneRoute = '/register-phone';
   static const String searchRoute = '/search';
   static const String selectLocationRoute = '/select-location';
+  static const String setLocationMapRoute = '/set-location-map';
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String splashRoute = '/splash';
@@ -138,6 +141,10 @@ class AppRouter {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const SelectLocationPage(),
         );
+      case setLocationMapRoute:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const SetLocationMapPage(),
+        );
       case loginRoute:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const LoginPage(),
@@ -152,7 +159,9 @@ class AppRouter {
         );
       case verificationRoute:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const VerificationPage(),
+          builder: (_) => VerificationPage(
+            verificationId: settings.arguments as String,
+          ),
         );
       default:
         return MaterialPageRoute<dynamic>(

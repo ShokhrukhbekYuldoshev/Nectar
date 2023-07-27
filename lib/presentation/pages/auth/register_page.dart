@@ -15,6 +15,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isObscure = true;
@@ -67,124 +68,143 @@ class _RegisterPageState extends State<RegisterPage> {
                   right: 25,
                   bottom: 90,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: SvgPicture.asset(SvgAssets.carrot),
-                    ),
-                    const SizedBox(height: 100),
-                    const Text(
-                      'Sign up', // Change the title to "Sign up"
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w600,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: SvgPicture.asset(SvgAssets.carrot),
                       ),
-                    ),
-                    const SizedBox(height: 15),
-                    const Text(
-                      'Create an account to get started', // Update the description
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
+                      const SizedBox(height: 100),
+                      const Text(
+                        'Sign up', // Change the title to "Sign up"
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 40),
-                    TextField(
-                      controller: _emailController,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
+                      const SizedBox(height: 15),
+                      const Text(
+                        'Create an account to get started', // Update the description
+                        style: TextStyle(
                           fontSize: 16,
+                          fontWeight: FontWeight.w300,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 30),
-                    TextField(
-                      controller: _passwordController,
-                      obscureText: _isObscure,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: const TextStyle(
-                          fontSize: 16,
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _isObscure
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _isObscure = !_isObscure;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    DefaultButton(
-                      text: "Sign up",
-                      onTap: () {
-                        if (_emailController.text.isNotEmpty &&
-                            _passwordController.text.isNotEmpty) {
-                          context.read<RegisterBloc>().add(
-                                RegisterWithEmailAndPassword(
-                                  email: _emailController.text,
-                                  password: _passwordController.text,
-                                ),
-                              );
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    DefaultButton(
-                      text: "Continue with Google",
-                      onTap: () {
-                        context.read<RegisterBloc>().add(
-                              RegisterWithGoogle(),
-                            );
-                      },
-                      backgroundColor: AppColors.googleBlue,
-                      leading: SvgPicture.asset(SvgAssets.google),
-                    ),
-                    const SizedBox(height: 20),
-                    DefaultButton(
-                      text: "Continue with Facebook",
-                      onTap: () {
-                        context.read<RegisterBloc>().add(
-                              RegisterWithFacebook(),
-                            );
-                      },
-                      backgroundColor: AppColors.facebookBlue,
-                      leading: SvgPicture.asset(SvgAssets.facebook),
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "Already have an account?",
-                          style: TextStyle(
+                      const SizedBox(height: 40),
+                      TextFormField(
+                        controller: _emailController,
+                        decoration: const InputDecoration(
+                          labelText: 'Email',
+                          labelStyle: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.w300,
                           ),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text(
-                            'Sign in',
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          // regex
+                          else if (!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+                              .hasMatch(value)) {
+                            return 'Please enter a valid email';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 30),
+                      TextFormField(
+                        controller: _passwordController,
+                        obscureText: _isObscure,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(
+                            fontSize: 16,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      DefaultButton(
+                        text: "Sign up",
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<RegisterBloc>().add(
+                                  RegisterWithEmailAndPassword(
+                                    email: _emailController.text.trim(),
+                                    password: _passwordController.text.trim(),
+                                  ),
+                                );
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      DefaultButton(
+                        text: "Continue with Google",
+                        onTap: () {
+                          context.read<RegisterBloc>().add(
+                                RegisterWithGoogle(),
+                              );
+                        },
+                        backgroundColor: AppColors.googleBlue,
+                        leading: SvgPicture.asset(SvgAssets.google),
+                      ),
+                      const SizedBox(height: 20),
+                      DefaultButton(
+                        text: "Continue with Facebook",
+                        onTap: () {
+                          context.read<RegisterBloc>().add(
+                                RegisterWithFacebook(),
+                              );
+                        },
+                        backgroundColor: AppColors.facebookBlue,
+                        leading: SvgPicture.asset(SvgAssets.facebook),
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Already have an account?",
                             style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w300,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                              'Sign in',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

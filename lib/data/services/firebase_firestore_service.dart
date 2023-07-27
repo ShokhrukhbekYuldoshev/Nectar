@@ -78,6 +78,25 @@ class FirebaseFirestoreService {
         .update(data);
   }
 
+  // update document with query
+  Future<void> updateDocumentWithQuery(
+    String collectionName,
+    Object field,
+    Object value,
+    Map<String, dynamic> data,
+  ) async {
+    final QuerySnapshot querySnapshot = await _firebaseFirestore
+        .collection(collectionName)
+        .where(field, isEqualTo: value)
+        .get();
+    final List<QueryDocumentSnapshot> queryDocumentSnapshot =
+        querySnapshot.docs;
+    await _firebaseFirestore
+        .collection(collectionName)
+        .doc(queryDocumentSnapshot[0].id)
+        .update(data);
+  }
+
   Future<void> deleteDocument(
     String collectionName,
     String documentId,

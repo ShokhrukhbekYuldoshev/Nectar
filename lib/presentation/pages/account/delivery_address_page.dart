@@ -8,7 +8,7 @@ class DeliveryAddressPage extends StatefulWidget {
 }
 
 class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
-  String _address = '';
+  String address = '';
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
             ),
             const SizedBox(height: 8),
             Text(
-              _address.isNotEmpty ? _address : 'No address selected',
+              address.isNotEmpty ? address : 'No address selected',
               style: const TextStyle(
                 fontSize: 16,
               ),

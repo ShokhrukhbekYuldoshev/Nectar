@@ -2,14 +2,15 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Address extends Equatable {
   final String country;
   final String city;
-  final String street;
+  String street;
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  const Address({
+  Address({
     required this.country,
     required this.city,
     required this.street,
