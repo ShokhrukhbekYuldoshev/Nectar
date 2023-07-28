@@ -3,7 +3,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:nectar/data/models/address.dart';
 import 'package:nectar/data/models/category.dart';
 import 'package:nectar/data/models/product.dart';
-import 'package:nectar/data/models/unit.dart';
 import 'package:nectar/data/models/user.dart';
 
 // register adapters
@@ -12,7 +11,6 @@ void registerAdapters() {
   Hive.registerAdapter(AddressAdapter());
   Hive.registerAdapter(UserAdapter());
   Hive.registerAdapter(CategoryAdapter());
-  Hive.registerAdapter(UnitAdapter());
   Hive.registerAdapter(ProductAdapter());
 }
 
@@ -107,29 +105,6 @@ class CategoryAdapter extends TypeAdapter<Category> {
     writer.write(obj.name);
     writer.write(obj.description);
     writer.write(obj.image);
-    writer.write(obj.createdAt);
-    writer.write(obj.updatedAt);
-  }
-}
-
-class UnitAdapter extends TypeAdapter<Unit> {
-  @override
-  final int typeId = 4;
-
-  @override
-  Unit read(BinaryReader reader) {
-    return Unit(
-      name: reader.read(),
-      symbol: reader.read(),
-      createdAt: reader.read(),
-      updatedAt: reader.read(),
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, Unit obj) {
-    writer.write(obj.name);
-    writer.write(obj.symbol);
     writer.write(obj.createdAt);
     writer.write(obj.updatedAt);
   }

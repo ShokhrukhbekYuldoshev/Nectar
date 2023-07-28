@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar/data/models/product.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/widgets/buttons/round_button.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final Product product;
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +28,28 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // image
-          CachedNetworkImage(
-            imageUrl:
-                'https://cdn.viva.org.uk/wp-content/uploads/2020/02/Bananas.jpg',
-            height: 100,
-          ),
+          // image or icon
+          if (product.images != null && product.images!.isNotEmpty)
+            CachedNetworkImage(
+              imageUrl: product.images!.first,
+              height: 100,
+              fit: BoxFit.cover,
+            )
+          else
+            const Icon(
+              Icons.inventory,
+              size: 100,
+              color: AppColors.primary,
+            ),
           const SizedBox(height: 20),
           // title
           Text(
-            'Banana',
+            product.name,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           // unit
           Text(
-            '1kg, Price',
+            "1 ${product.unit.name}",
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const Spacer(),
@@ -49,7 +58,7 @@ class ProductCard extends StatelessWidget {
             children: [
               // price
               Text(
-                '\$4.99',
+                '\$${product.price.toStringAsFixed(2)}',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               // add to cart

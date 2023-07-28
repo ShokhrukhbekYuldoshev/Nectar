@@ -102,7 +102,7 @@ class _ProductsPageState extends State<ProductsPage> {
                   childAspectRatio: 0.6,
                 ),
                 itemBuilder: (BuildContext context, int index) {
-                  return const ProductCard();
+                  return Container();
                 },
               ),
             ],

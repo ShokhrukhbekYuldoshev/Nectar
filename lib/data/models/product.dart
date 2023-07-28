@@ -60,9 +60,9 @@ class Product extends Equatable {
       'name': name,
       'description': description,
       'price': price,
-      'unit': unit,
+      'unit': unit.name, // enum to string
       'images': images,
-      'category': category,
+      'category': category?.toMap(),
       'brand': brand,
       'nutritions': nutritions,
       'createdAt': createdAt,
@@ -76,7 +76,7 @@ class Product extends Equatable {
       description:
           map['description'] != null ? map['description'] as String : null,
       price: map['price'] as double,
-      unit: Unit.fromMap(map['unit'] as Map<String, dynamic>),
+      unit: unitFromName(map['unit'] as String),
       images: map['images'] != null
           ? List<String>.from((map['images'] as List<String>))
           : null,
@@ -85,10 +85,10 @@ class Product extends Equatable {
           : null,
       brand: map['brand'] != null ? map['brand'] as String : null,
       nutritions: map['nutritions'] != null
-          ? Map<String, double>.from((map['nutritions'] as Map<String, double>))
+          ? Map<String, double>.from(map['nutritions'] as Map<String, dynamic>)
           : null,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
+      createdAt: map['createdAt'].toDate(),
+      updatedAt: map['updatedAt'].toDate(),
     );
   }
 

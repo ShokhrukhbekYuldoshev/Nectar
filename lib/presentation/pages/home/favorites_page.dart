@@ -35,12 +35,7 @@ class FavoritesPage extends StatelessWidget {
                   product: Product(
                     name: 'Organic Bananas',
                     price: 4.99,
-                    unit: Unit(
-                      symbol: 'kg',
-                      name: 'kilogram',
-                      createdAt: DateTime.now(),
-                      updatedAt: DateTime.now(),
-                    ),
+                    unit: Unit.kg,
                     images: const [
                       'https://healthiersteps.com/wp-content/uploads/2021/12/green-apple-benefits.jpeg',
                     ],
@@ -117,7 +112,7 @@ class FavoriteItem extends StatelessWidget {
                 ),
                 // unit
                 Text(
-                  '1 ${product.unit.symbol}',
+                  '1 ${product.unit}',
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
