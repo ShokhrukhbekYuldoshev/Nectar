@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hive/hive.dart';
 import 'package:nectar/bloc/login/login_bloc.dart';
-import 'package:nectar/data/models/user.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
+import 'package:nectar/presentation/utils/helpers.dart';
 import 'package:nectar/presentation/widgets/buttons/default_button.dart';
 
 class LoginPage extends StatefulWidget {
@@ -22,16 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isObscure = true;
   bool ignoring = false;
-
-  bool isUserRegistered() {
-    User? user = Hive.box('myBox').get('user');
-
-    if (user == null) {
-      return false;
-    } else {
-      return user.address.isEmpty ? false : true;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,12 +113,9 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           validator: (value) {
-                            // email regex
                             if (value!.isEmpty) {
                               return 'Please enter your email';
-                            } else if (!RegExp(
-                                    r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                .hasMatch(value)) {
+                            } else if (!isValidEmail(value.trim())) {
                               return 'Please enter a valid email';
                             }
                             return null;

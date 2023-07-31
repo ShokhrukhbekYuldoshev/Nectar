@@ -5,6 +5,7 @@ import 'package:nectar/bloc/register/register_bloc.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
+import 'package:nectar/presentation/utils/helpers.dart';
 import 'package:nectar/presentation/widgets/buttons/default_button.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -104,10 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         validator: (value) {
                           if (value!.trim().isEmpty) {
                             return 'Please enter your email';
-                          }
-                          // regex
-                          else if (!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
-                              .hasMatch(value)) {
+                          } else if (!isValidEmail(value.trim())) {
                             return 'Please enter a valid email';
                           }
                           return null;

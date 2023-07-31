@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nectar/presentation/widgets/buttons/default_button.dart';
-
-// TODO: Implement MyDetailsPage
 
 class MyDetailsPage extends StatefulWidget {
   const MyDetailsPage({Key? key}) : super(key: key);
@@ -11,9 +10,16 @@ class MyDetailsPage extends StatefulWidget {
 }
 
 class _MyDetailsPageState extends State<MyDetailsPage> {
-  String _name = '';
-  String _email = '';
-  String _phone = '';
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController(
+    text: Hive.box('myBox').get('user').displayName,
+  );
+  final _emailController = TextEditingController(
+    text: Hive.box('myBox').get('user').email,
+  );
+  final _phoneController = TextEditingController(
+    text: Hive.box('myBox').get('user').phoneNumber,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -31,67 +37,76 @@ class _MyDetailsPageState extends State<MyDetailsPage> {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 16),
-              const Text(
-                'Name',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 16),
+                const Text(
+                  'Name',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your name',
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter your name',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your name';
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _name = value;
-                  });
-                },
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'Email',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 16),
+                const Text(
+                  'Email',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your email',
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter your email',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _email = value;
-                  });
-                },
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'Phone',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 16),
+                const Text(
+                  'Phone',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter your phone number',
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _phoneController,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter your phone number',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your phone number';
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _phone = value;
-                  });
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -27,8 +27,9 @@ class Geoservices {
         'https://api.mapbox.com/geocoding/v5/mapbox.places/$longitude,$latitude.json?access_token=$MAPBOX_ACCESS_TOKEN';
     final Response response = await Dio().get(url);
     // get street name and house number
-    final String streetName = response.data['features'][0]['text'];
-    final String houseNumber = response.data['features'][0]['address'];
-    return '$streetName $houseNumber';
+    final String streetName = response.data['features'][0]['text'] ?? 'Unknown';
+    final String houseNumber =
+        response.data['features'][0]['address'] ?? 'Unknown';
+    return '$houseNumber, $streetName';
   }
 }

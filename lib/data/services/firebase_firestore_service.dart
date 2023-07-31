@@ -107,9 +107,18 @@ class FirebaseFirestoreService {
         .delete();
   }
 
-  Future<DocumentSnapshot<Object?>> getDocumentFromReference(
-    DocumentReference documentReference,
+  // get reference from collection where field == value
+  Future<DocumentReference> getDocumentReference(
+    String collectionName,
+    Object field,
+    Object value,
   ) async {
-    return await documentReference.get();
+    final QuerySnapshot querySnapshot = await _firebaseFirestore
+        .collection(collectionName)
+        .where(field, isEqualTo: value)
+        .get();
+    final List<QueryDocumentSnapshot> queryDocumentSnapshot =
+        querySnapshot.docs;
+    return queryDocumentSnapshot[0].reference;
   }
 }

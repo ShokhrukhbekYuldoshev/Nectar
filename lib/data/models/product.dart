@@ -1,16 +1,17 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:nectar/data/models/category.dart';
-import 'package:nectar/data/models/unit.dart';
+import 'package:nectar/data/enums/unit.dart';
 
 class Product extends Equatable {
   final String name;
+  final DocumentReference store;
   final String? description;
   final double price;
   final Unit unit;
   final List<String>? images;
-  final Category? category;
+  final DocumentReference? category;
   final String? brand;
   final Map<String, double>? nutritions;
   final DateTime createdAt;
@@ -18,6 +19,7 @@ class Product extends Equatable {
 
   const Product({
     required this.name,
+    required this.store,
     this.description,
     required this.price,
     required this.unit,
@@ -31,11 +33,12 @@ class Product extends Equatable {
 
   Product copyWith({
     String? name,
+    DocumentReference? store,
     String? description,
     double? price,
     Unit? unit,
     List<String>? images,
-    Category? category,
+    DocumentReference? category,
     String? brand,
     Map<String, double>? nutritions,
     DateTime? createdAt,
@@ -43,6 +46,7 @@ class Product extends Equatable {
   }) {
     return Product(
       name: name ?? this.name,
+      store: store ?? this.store,
       description: description ?? this.description,
       price: price ?? this.price,
       unit: unit ?? this.unit,
@@ -58,11 +62,12 @@ class Product extends Equatable {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'name': name,
+      'store': store,
       'description': description,
       'price': price,
       'unit': unit.name, // enum to string
       'images': images,
-      'category': category?.toMap(),
+      'category': category,
       'brand': brand,
       'nutritions': nutritions,
       'createdAt': createdAt,
@@ -73,6 +78,7 @@ class Product extends Equatable {
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
       name: map['name'] as String,
+      store: map['store'] as DocumentReference,
       description:
           map['description'] != null ? map['description'] as String : null,
       price: map['price'] as double,
@@ -80,9 +86,8 @@ class Product extends Equatable {
       images: map['images'] != null
           ? List<String>.from((map['images'] as List<String>))
           : null,
-      category: map['category'] != null
-          ? Category.fromMap(map['category'] as Map<String, dynamic>)
-          : null,
+      category:
+          map['category'] != null ? map['category'] as DocumentReference : null,
       brand: map['brand'] != null ? map['brand'] as String : null,
       nutritions: map['nutritions'] != null
           ? Map<String, double>.from(map['nutritions'] as Map<String, dynamic>)
@@ -104,6 +109,7 @@ class Product extends Equatable {
   List<Object?> get props {
     return [
       name,
+      store,
       description,
       price,
       unit,

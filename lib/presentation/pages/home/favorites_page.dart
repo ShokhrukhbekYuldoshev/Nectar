@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar/data/models/product.dart';
-import 'package:nectar/data/models/unit.dart';
+import 'package:nectar/data/enums/unit.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -31,18 +31,21 @@ class FavoritesPage extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 3,
               itemBuilder: (context, index) {
-                return FavoriteItem(
-                  product: Product(
-                    name: 'Organic Bananas',
-                    price: 4.99,
-                    unit: Unit.kg,
-                    images: const [
-                      'https://healthiersteps.com/wp-content/uploads/2021/12/green-apple-benefits.jpeg',
-                    ],
-                    createdAt: DateTime.now(),
-                    updatedAt: DateTime.now(),
-                  ),
-                );
+                return SizedBox();
+                // TODO:
+                // return FavoriteItem(
+                //   product: Product(
+                //     name: 'Organic Bananas',
+
+                //     price: 4.99,
+                //     unit: Unit.kg,
+                //     images: const [
+                //       'https://healthiersteps.com/wp-content/uploads/2021/12/green-apple-benefits.jpeg',
+                //     ],
+                //     createdAt: DateTime.now(),
+                //     updatedAt: DateTime.now(),
+                //   ),
+                // );
               },
               separatorBuilder: (context, index) {
                 return const Padding(

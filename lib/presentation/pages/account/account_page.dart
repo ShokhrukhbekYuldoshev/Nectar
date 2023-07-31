@@ -172,7 +172,7 @@ class AccountPage extends StatelessWidget {
                   onTap: () {
                     // navigate to address page
                     Navigator.of(context)
-                        .pushNamed(AppRouter.deliveryAddressRoute);
+                        .pushNamed(AppRouter.selectLocationRoute);
                   },
                 ),
                 const Divider(height: 1),

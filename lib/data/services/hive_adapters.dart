@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:nectar/data/models/address.dart';
 import 'package:nectar/data/models/category.dart';
 import 'package:nectar/data/models/product.dart';
+import 'package:nectar/data/models/store.dart';
 import 'package:nectar/data/models/user.dart';
 
 // register adapters
@@ -12,6 +13,7 @@ void registerAdapters() {
   Hive.registerAdapter(UserAdapter());
   Hive.registerAdapter(CategoryAdapter());
   Hive.registerAdapter(ProductAdapter());
+  Hive.registerAdapter(StoreAdapter());
 }
 
 class FirestoreDocumentReferenceAdapter extends TypeAdapter<DocumentReference> {
@@ -67,6 +69,7 @@ class UserAdapter extends TypeAdapter<User> {
       photoUrl: reader.read(),
       phoneNumber: reader.read(),
       address: reader.read(),
+      favoriteProducts: reader.read(),
       createdAt: reader.read(),
       updatedAt: reader.read(),
     );
@@ -80,6 +83,7 @@ class UserAdapter extends TypeAdapter<User> {
     writer.write(obj.photoUrl);
     writer.write(obj.phoneNumber);
     writer.write(obj.address);
+    writer.write(obj.favoriteProducts);
     writer.write(obj.createdAt);
     writer.write(obj.updatedAt);
   }
@@ -118,6 +122,7 @@ class ProductAdapter extends TypeAdapter<Product> {
   Product read(BinaryReader reader) {
     return Product(
       name: reader.read(),
+      store: reader.read(),
       description: reader.read(),
       price: reader.read(),
       unit: reader.read(),
@@ -133,6 +138,7 @@ class ProductAdapter extends TypeAdapter<Product> {
   @override
   void write(BinaryWriter writer, Product obj) {
     writer.write(obj.name);
+    writer.write(obj.store);
     writer.write(obj.description);
     writer.write(obj.price);
     writer.write(obj.unit);
@@ -140,6 +146,35 @@ class ProductAdapter extends TypeAdapter<Product> {
     writer.write(obj.category);
     writer.write(obj.brand);
     writer.write(obj.nutritions);
+    writer.write(obj.createdAt);
+    writer.write(obj.updatedAt);
+  }
+}
+
+class StoreAdapter extends TypeAdapter<Store> {
+  @override
+  final int typeId = 4;
+
+  @override
+  Store read(BinaryReader reader) {
+    return Store(
+      name: reader.read(),
+      latitude: reader.read(),
+      longitude: reader.read(),
+      description: reader.read(),
+      image: reader.read(),
+      createdAt: reader.read(),
+      updatedAt: reader.read(),
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Store obj) {
+    writer.write(obj.name);
+    writer.write(obj.latitude);
+    writer.write(obj.longitude);
+    writer.write(obj.description);
+    writer.write(obj.image);
     writer.write(obj.createdAt);
     writer.write(obj.updatedAt);
   }

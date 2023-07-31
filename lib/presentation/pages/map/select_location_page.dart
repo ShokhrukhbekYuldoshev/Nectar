@@ -59,13 +59,27 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
   };
 
   // selected country
-  String selectedCountry = 'USA';
+  String selectedCountry =
+      Hive.box('myBox').get('user', defaultValue: 'USA').address.country;
 
   // selected city
-  String selectedCity = 'Los Angeles';
+  String selectedCity =
+      Hive.box('myBox').get('user', defaultValue: 'New York').address.city;
+
+  // selected address
+  String selectedAddress =
+      Hive.box('myBox').get('user', defaultValue: '').address.street;
 
   @override
   Widget build(BuildContext context) {
+    if (selectedCountry.isEmpty) {
+      selectedCountry = 'USA';
+    }
+
+    if (selectedCity.isEmpty) {
+      selectedCity = 'New York';
+    }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -136,6 +150,7 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                       setState(() {
                         selectedCountry = value!;
                         selectedCity = locations[value]!.first;
+                        selectedAddress = '';
                       });
                     },
                     items: locations.keys
@@ -175,11 +190,12 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                     onChanged: (value) {
                       setState(() {
                         selectedCity = value!;
+                        selectedAddress = '';
                       });
                     },
                   ),
                   const SizedBox(height: 20),
-                  if (Hive.box("myBox").get("user").address.street.isNotEmpty)
+                  if (selectedAddress.isNotEmpty)
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(10),
@@ -202,18 +218,10 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
+                              // remove selected location
                               IconButton(
-                                onPressed: () {
-                                  final user =
-                                      Hive.box("myBox").get("user") as User;
-                                  user.address = Address(
-                                    country: '',
-                                    city: '',
-                                    street: '',
-                                    createdAt: user.address.createdAt,
-                                    updatedAt: user.address.updatedAt,
-                                  );
-                                  Hive.box("myBox").put("user", user);
+                                onPressed: () async {
+                                  selectedAddress = '';
                                   setState(() {});
                                 },
                                 icon: const Icon(Icons.close),
@@ -222,7 +230,7 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            '${Hive.box("myBox").get("user").address.street}, $selectedCity, $selectedCountry',
+                            '$selectedAddress, $selectedCity, $selectedCountry',
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -239,18 +247,11 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                       Navigator.pushNamed(
                         context,
                         AppRouter.setLocationMapRoute,
-                      ).then((value) {
+                      ).then((value) async {
                         if (value != null) {
-                          final user = Hive.box("myBox").get("user") as User;
-                          user.address = Address(
-                            country: selectedCountry,
-                            city: selectedCity,
-                            street: value as String,
-                            createdAt: user.address.createdAt,
-                            updatedAt: user.address.updatedAt,
-                          );
-                          Hive.box("myBox").put("user", user);
-                          setState(() {});
+                          setState(() {
+                            selectedAddress = value as String;
+                          });
                         }
                       });
                     },
@@ -260,46 +261,54 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                   DefaultButton(
                     text: "Submit",
                     onTap: () async {
-                      if (Hive.box("myBox")
-                          .get("user")
-                          .address
-                          .street
-                          .isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Please select your location',
+                      try {
+                        if (selectedAddress.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Please select your location',
+                              ),
+                              backgroundColor: AppColors.error,
                             ),
-                            backgroundColor: AppColors.error,
+                          );
+                          return;
+                        }
+                        // show loading
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) => const Center(
+                            child: CircularProgressIndicator(),
                           ),
                         );
-                        return;
-                      }
-                      // show loading
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (context) => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-
-                      final user = Hive.box("myBox").get("user") as User;
-                      await FirebaseFirestoreService().updateDocumentWithQuery(
-                        "users",
-                        "uid",
-                        user.uid,
-                        user.toMap(),
-                      );
-
-                      // hide loading and navigate to home
-                      if (mounted) {
-                        Navigator.pop(context);
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          AppRouter.homeRoute,
-                          (route) => false,
+                        final user = Hive.box("myBox").get("user") as User;
+                        user.address = Address(
+                          country: selectedCountry,
+                          city: selectedCity,
+                          street: selectedAddress,
+                          createdAt: user.address.createdAt,
+                          updatedAt: DateTime.now(),
                         );
+                        await Hive.box("myBox").put("user", user);
+                        await FirebaseFirestoreService()
+                            .updateDocumentWithQuery(
+                          "users",
+                          "uid",
+                          user.uid,
+                          user.toMap(),
+                        );
+
+                        // hide loading and navigate to home
+                        if (mounted) {
+                          Navigator.pop(context);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            AppRouter.homeRoute,
+                            (route) => false,
+                          );
+                        }
+                      } catch (e, s) {
+                        debugPrintStack(label: e.toString(), stackTrace: s);
                       }
                     },
                   ),

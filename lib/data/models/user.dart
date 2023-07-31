@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:nectar/data/models/address.dart';
 
@@ -10,6 +11,7 @@ class User extends Equatable {
   final String? photoUrl;
   String phoneNumber;
   Address address;
+  final List<DocumentReference>? favoriteProducts;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -20,6 +22,7 @@ class User extends Equatable {
     this.photoUrl,
     required this.phoneNumber,
     required this.address,
+    this.favoriteProducts,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -31,6 +34,7 @@ class User extends Equatable {
     String? photoURL,
     String? phoneNumber,
     Address? address,
+    List<DocumentReference>? favoriteProducts,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -41,6 +45,7 @@ class User extends Equatable {
       photoUrl: photoURL,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       address: address ?? this.address,
+      favoriteProducts: favoriteProducts ?? this.favoriteProducts,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
@@ -54,6 +59,7 @@ class User extends Equatable {
       'photoURL': photoUrl,
       'phoneNumber': phoneNumber,
       'address': address.toMap(),
+      'favoriteProducts': favoriteProducts,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'updatedAt': updatedAt.millisecondsSinceEpoch,
     };
@@ -67,6 +73,13 @@ class User extends Equatable {
       photoUrl: map['photoURL'] != null ? map['photoURL'] as String : null,
       phoneNumber: map['phoneNumber'] as String,
       address: Address.fromMap(map['address'] as Map<String, dynamic>),
+      favoriteProducts: map['favoriteProducts'] != null
+          ? List<DocumentReference>.from(
+              map['favoriteProducts']?.map(
+                (x) => x,
+              ),
+            )
+          : null,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
       updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
     );
@@ -88,6 +101,7 @@ class User extends Equatable {
         photoUrl,
         phoneNumber,
         address,
+        favoriteProducts,
         createdAt,
         updatedAt,
       ];
