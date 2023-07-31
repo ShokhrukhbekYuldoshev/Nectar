@@ -103,8 +103,7 @@ class AuthService {
       // save user data to hive
       Hive.box('myBox').put('user', user);
     } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
+      debugPrintStack(label: e.toString(), stackTrace: s);
     }
   }
 

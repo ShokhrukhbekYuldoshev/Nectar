@@ -1,6 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nectar/bloc/product/product_bloc.dart';
+import 'package:nectar/data/models/order_product.dart';
 import 'package:nectar/data/models/product.dart';
+import 'package:nectar/data/repositories/product_repository.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/widgets/buttons/round_button.dart';
 
@@ -10,6 +14,11 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    OrderProduct orderProduct = OrderProduct(
+      product: product,
+      quantity: ProductRepository.getQuantity(product),
+    );
+
     return Container(
       padding: const EdgeInsets.only(
         top: 20,
@@ -64,7 +73,14 @@ class ProductCard extends StatelessWidget {
               // add to cart
               RoundButton(
                 icon: Icons.add,
-                onTap: () {},
+                onTap: () {
+                  context.read<ProductBloc>().add(
+                        UpdateCart(
+                          orderProduct: orderProduct,
+                          quantity: orderProduct.quantity + 1,
+                        ),
+                      );
+                },
               )
             ],
           )

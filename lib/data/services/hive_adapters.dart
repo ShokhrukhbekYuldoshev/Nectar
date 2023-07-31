@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:nectar/data/enums/unit.dart';
 import 'package:nectar/data/models/address.dart';
 import 'package:nectar/data/models/category.dart';
+import 'package:nectar/data/models/order_product.dart';
 import 'package:nectar/data/models/product.dart';
 import 'package:nectar/data/models/store.dart';
 import 'package:nectar/data/models/user.dart';
@@ -14,6 +16,7 @@ void registerAdapters() {
   Hive.registerAdapter(CategoryAdapter());
   Hive.registerAdapter(ProductAdapter());
   Hive.registerAdapter(StoreAdapter());
+  Hive.registerAdapter(OrderProductAdapter());
 }
 
 class FirestoreDocumentReferenceAdapter extends TypeAdapter<DocumentReference> {
@@ -125,7 +128,7 @@ class ProductAdapter extends TypeAdapter<Product> {
       store: reader.read(),
       description: reader.read(),
       price: reader.read(),
-      unit: reader.read(),
+      unit: unitFromName(reader.read()),
       images: reader.read(),
       category: reader.read(),
       brand: reader.read(),
@@ -141,7 +144,7 @@ class ProductAdapter extends TypeAdapter<Product> {
     writer.write(obj.store);
     writer.write(obj.description);
     writer.write(obj.price);
-    writer.write(obj.unit);
+    writer.write(obj.unit.name);
     writer.write(obj.images);
     writer.write(obj.category);
     writer.write(obj.brand);
@@ -177,5 +180,24 @@ class StoreAdapter extends TypeAdapter<Store> {
     writer.write(obj.image);
     writer.write(obj.createdAt);
     writer.write(obj.updatedAt);
+  }
+}
+
+class OrderProductAdapter extends TypeAdapter<OrderProduct> {
+  @override
+  final int typeId = 6;
+
+  @override
+  OrderProduct read(BinaryReader reader) {
+    return OrderProduct(
+      product: reader.read(),
+      quantity: reader.read(),
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, OrderProduct obj) {
+    writer.write(obj.product);
+    writer.write(obj.quantity);
   }
 }

@@ -40,7 +40,7 @@ class FirebaseFirestoreService {
   Future<QuerySnapshot> getDocumentsWithQuery(
     String collectionName,
     Object field,
-    Object value,
+    Object? value,
   ) async {
     return await _firebaseFirestore
         .collection(collectionName)

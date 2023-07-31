@@ -11,6 +11,7 @@ class FavoritesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text(
           'Favorites',
@@ -26,7 +27,7 @@ class FavoritesPage extends StatelessWidget {
             const Divider(
               color: AppColors.lightBorderGray,
             ),
-            ListView.separated(
+            ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 3,
@@ -47,14 +48,14 @@ class FavoritesPage extends StatelessWidget {
                 //   ),
                 // );
               },
-              separatorBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
-                  child: Divider(
-                    color: AppColors.lightBorderGray,
-                  ),
-                );
-              },
+              // separatorBuilder: (context, index) {
+              //   return const Padding(
+              //     padding: EdgeInsets.symmetric(horizontal: 25),
+              //     child: Divider(
+              //       color: AppColors.lightBorderGray,
+              //     ),
+              //   );
+              // },
             ),
           ],
         ),

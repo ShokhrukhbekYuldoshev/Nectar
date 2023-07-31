@@ -24,14 +24,14 @@ class StoreCard extends StatelessWidget {
       child: Row(
         children: [
           // image or icon
-          if (store.image != null)
+          if (store.image != null && store.image!.isNotEmpty)
             Container(
               height: 150,
               width: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
                 image: DecorationImage(
-                  image: AssetImage(store.image!),
+                  image: NetworkImage(store.image!),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -53,11 +53,13 @@ class StoreCard extends StatelessWidget {
               ),
             ),
           const SizedBox(width: 15),
-          Text(
-            store.name,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+          Expanded(
+            child: Text(
+              store.name,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],

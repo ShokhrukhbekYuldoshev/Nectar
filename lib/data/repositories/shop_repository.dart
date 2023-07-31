@@ -12,8 +12,8 @@ class ShopRepository {
   Future<List<Product>> fetchExclusiveProducts() async {
     var snapshot = await _firebaseFirestoreService.getDocumentsWithQuery(
       'products',
-      'exclusive',
-      true,
+      'category',
+      null,
     );
 
     return snapshot.docs
@@ -25,8 +25,8 @@ class ShopRepository {
   Future<List<Product>> fetchBestSellingProducts() async {
     var snapshot = await _firebaseFirestoreService.getDocumentsWithQuery(
       'products',
-      'best_seller',
-      true,
+      'category',
+      null,
     );
 
     return snapshot.docs

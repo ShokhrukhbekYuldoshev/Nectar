@@ -273,6 +273,18 @@ class CarouselItem extends StatelessWidget {
               imageUrl: imageUrl,
               width: double.infinity,
               fit: BoxFit.cover,
+              errorWidget: (context, url, error) => Center(
+                child: Container(
+                  color: Colors.red,
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: const Icon(
+                    Icons.error,
+                    color: Colors.white,
+                    size: 80,
+                  ),
+                ),
+              ),
             ),
           ),
           Container(

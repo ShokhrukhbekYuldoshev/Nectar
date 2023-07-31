@@ -18,8 +18,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         );
         emit(RegisterSuccess());
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(RegisterFailure(error: e.toString()));
       }
     });
@@ -29,8 +28,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         await registerRepository.createUserWithGoogle();
         emit(RegisterSuccess());
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(RegisterFailure(error: e.toString()));
       }
     });
@@ -40,8 +38,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         await registerRepository.createUserWithFacebook();
         emit(RegisterSuccess());
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(RegisterFailure(error: e.toString()));
       }
     });

@@ -18,8 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
         emit(LoginSuccess());
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(LoginFailure(error: e.toString()));
       }
     });
@@ -29,8 +28,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         await loginRepository.signInWithGoogle();
         emit(LoginSuccess());
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(LoginFailure(error: e.toString()));
       }
     });
@@ -40,8 +38,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         await loginRepository.signInWithFacebook();
         emit(LoginSuccess());
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(LoginFailure(error: e.toString()));
       }
     });

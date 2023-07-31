@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:nectar/data/enums/unit.dart';
 
 class Product extends Equatable {
+  final String? id;
   final String name;
   final DocumentReference store;
   final String? description;
@@ -13,11 +14,12 @@ class Product extends Equatable {
   final List<String>? images;
   final DocumentReference? category;
   final String? brand;
-  final Map<String, double>? nutritions;
+  final Map<dynamic, dynamic>? nutritions;
   final DateTime createdAt;
   final DateTime updatedAt;
 
   const Product({
+    this.id,
     required this.name,
     required this.store,
     this.description,
@@ -32,6 +34,7 @@ class Product extends Equatable {
   });
 
   Product copyWith({
+    String? id,
     String? name,
     DocumentReference? store,
     String? description,
@@ -45,6 +48,7 @@ class Product extends Equatable {
     DateTime? updatedAt,
   }) {
     return Product(
+      id: id ?? this.id,
       name: name ?? this.name,
       store: store ?? this.store,
       description: description ?? this.description,
@@ -90,7 +94,7 @@ class Product extends Equatable {
           map['category'] != null ? map['category'] as DocumentReference : null,
       brand: map['brand'] != null ? map['brand'] as String : null,
       nutritions: map['nutritions'] != null
-          ? Map<String, double>.from(map['nutritions'] as Map<String, dynamic>)
+          ? Map<String, double>.from(map['nutritions'])
           : null,
       createdAt: map['createdAt'].toDate(),
       updatedAt: map['updatedAt'].toDate(),
@@ -108,6 +112,7 @@ class Product extends Equatable {
   @override
   List<Object?> get props {
     return [
+      id,
       name,
       store,
       description,

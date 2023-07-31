@@ -54,7 +54,7 @@ class Store extends Equatable {
   factory Store.fromMap(Map<String, dynamic> map) {
     return Store(
       name: map['name'] as String,
-      description: map['description'] as String,
+      description: map['description'],
       image: map['image'],
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
       updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),

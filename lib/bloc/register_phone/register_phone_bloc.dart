@@ -22,8 +22,7 @@ class RegisterPhoneBloc extends Bloc<RegisterPhoneEvent, RegisterPhoneState> {
         );
         emit(RegisterPhoneSuccess());
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(RegisterPhoneFailure(error: e.toString()));
       }
     });
@@ -35,8 +34,7 @@ class RegisterPhoneBloc extends Bloc<RegisterPhoneEvent, RegisterPhoneState> {
         event.onVerified();
         emit(RegisterPhoneSuccess());
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(RegisterPhoneFailure(error: e.toString()));
       }
     });

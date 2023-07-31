@@ -23,8 +23,7 @@ class ForgotPasswordBloc
           ),
         );
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(ForgotPasswordFailure(error: e.toString()));
       }
     });

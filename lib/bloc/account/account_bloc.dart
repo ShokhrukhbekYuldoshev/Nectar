@@ -16,8 +16,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         await Hive.box('myBox').delete('user');
         emit(AccountLogoutSuccess());
       } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(AccountLogoutFailure(e.toString()));
       }
     });
