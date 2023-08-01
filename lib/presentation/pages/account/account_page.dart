@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nectar/bloc/account/account_bloc.dart';
+import 'package:nectar/data/models/user.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
@@ -11,6 +14,8 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? imageUrl = Hive.box('myBox').get('user').photoUrl;
+    User user = Hive.box('myBox').get('user');
     return BlocListener<AccountBloc, AccountState>(
       listener: (context, state) {
         if (state is AccountLoading) {
@@ -71,45 +76,49 @@ class AccountPage extends StatelessWidget {
                     // image
                     GestureDetector(
                       onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Dialog(
-                              child: Image.network(
-                                'https://gweb-research-imagen.web.app/compositional/An%20oil%20painting%20of%20a%20British%20Shorthair%20cat%20wearing%20a%20cowboy%20hat%20and%20red%20shirt%20skateboarding%20on%20a%20beach./1_.jpeg',
-                              ),
-                            );
-                          },
-                        );
+                        if (imageUrl != null && imageUrl.isNotEmpty) {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Dialog(
+                                child: CachedNetworkImage(
+                                  imageUrl: imageUrl,
+                                ),
+                              );
+                            },
+                          );
+                        }
                       },
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         radius: 40,
-                        backgroundImage: NetworkImage(
-                          'https://gweb-research-imagen.web.app/compositional/An%20oil%20painting%20of%20a%20British%20Shorthair%20cat%20wearing%20a%20cowboy%20hat%20and%20red%20shirt%20skateboarding%20on%20a%20beach./1_.jpeg',
-                        ),
+                        backgroundImage: imageUrl != null && imageUrl.isNotEmpty
+                            ? CachedNetworkImageProvider(
+                                imageUrl,
+                              )
+                            : null,
                       ),
                     ),
                     const SizedBox(width: 20),
-                    const Expanded(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // name
                           Text(
-                            'John Doe',
+                            user.displayName,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           // email
                           Text(
-                            'johndoe@example.com',
+                            user.email,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Colors.grey,
                             ),
