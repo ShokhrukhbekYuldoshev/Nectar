@@ -13,6 +13,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductBloc() : super(ProductInitial()) {
     on<UpdateCart>((event, emit) async {
       try {
+        emit(ProductInitial());
         await _productRepository.updateCart(
           event.orderProduct,
           event.quantity,
@@ -30,6 +31,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     });
     on<UpdateFavorite>((event, emit) async {
       try {
+        emit(ProductInitial());
         await _productRepository.updateFavorite(
           event.product,
           event.isFavorite,

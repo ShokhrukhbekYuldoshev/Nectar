@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               selectedIcon: SvgPicture.asset(SvgAssets.favorite),
-              label: 'Favorite',
+              label: 'Favorites',
             ),
             NavigationDestination(
               icon: SvgPicture.asset(

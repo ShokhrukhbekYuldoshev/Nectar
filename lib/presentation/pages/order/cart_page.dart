@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nectar/bloc/product/product_bloc.dart';
 
 import 'package:nectar/data/models/order_product.dart';
@@ -15,55 +14,50 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cart = Hive.box('myBox').get('cart');
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: const Text(
-          'My Cart',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 25,
-          vertical: 30,
-        ),
-        child: DefaultButton(
-          text: 'Checkout',
-          onTap: () {},
-          trailing: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 5,
-              vertical: 2,
+    return BlocBuilder<ProductBloc, ProductState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            centerTitle: true,
+            title: const Text(
+              'My Cart',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-            color: AppColors.primaryDark,
-            child: BlocBuilder<ProductBloc, ProductState>(
-              builder: (context, state) {
-                return Text(
+          ),
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 25,
+              vertical: 30,
+            ),
+            child: DefaultButton(
+              text: 'Checkout',
+              onTap: () {},
+              trailing: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 5,
+                  vertical: 2,
+                ),
+                color: AppColors.primaryDark,
+                child: Text(
                   '\$${ProductRepository.getTotalPrice().toStringAsFixed(2)}',
                   style: const TextStyle(
                     color: Colors.white,
                   ),
-                );
-              },
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-      body: BlocBuilder<ProductBloc, ProductState>(
-        builder: (context, state) {
-          return SingleChildScrollView(
+          body: SingleChildScrollView(
             child: Column(
               children: [
                 const Divider(
                   color: AppColors.lightBorderGray,
                 ),
-                if (cart == null || cart.isEmpty)
+                if (ProductRepository.cart.isEmpty)
                   const Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 25,
@@ -99,18 +93,18 @@ class CartPage extends StatelessWidget {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: cart?.length ?? 0,
+                  itemCount: ProductRepository.cart.length,
                   itemBuilder: (context, index) {
                     return CartItem(
-                      orderProduct: cart[index],
+                      orderProduct: ProductRepository.cart[index],
                     );
                   },
                 ),
               ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

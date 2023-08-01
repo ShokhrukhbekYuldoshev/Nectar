@@ -45,15 +45,5 @@ class OrderProduct extends Equatable {
   String toString() => 'OrderProduct(product: $product, quantity: $quantity)';
 
   @override
-  bool operator ==(covariant OrderProduct other) {
-    if (identical(this, other)) return true;
-
-    return other.product == product && other.quantity == quantity;
-  }
-
-  @override
-  int get hashCode => product.hashCode;
-
-  @override
   List<Object?> get props => [product];
 }

@@ -17,7 +17,8 @@ class ShopRepository {
     );
 
     return snapshot.docs
-        .map((doc) => Product.fromMap(doc.data() as Map<String, dynamic>))
+        .map((doc) => Product.fromMap(doc.data() as Map<String, dynamic>)
+            .copyWith(id: doc.id)) // set the product ID to the document ID
         .toList();
   }
 
@@ -30,7 +31,8 @@ class ShopRepository {
     );
 
     return snapshot.docs
-        .map((doc) => Product.fromMap(doc.data() as Map<String, dynamic>))
+        .map((doc) => Product.fromMap(doc.data() as Map<String, dynamic>)
+            .copyWith(id: doc.id)) // set the product ID to the document ID
         .toList();
   }
 

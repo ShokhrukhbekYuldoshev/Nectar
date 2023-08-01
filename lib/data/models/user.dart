@@ -11,7 +11,7 @@ class User extends Equatable {
   final String? photoUrl;
   String phoneNumber;
   Address address;
-  List<DocumentReference>? favoriteProducts;
+  List<dynamic>? favoriteProducts;
   final DateTime createdAt;
   final DateTime updatedAt;
 

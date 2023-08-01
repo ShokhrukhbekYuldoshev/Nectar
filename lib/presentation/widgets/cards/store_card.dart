@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar/data/models/store.dart';
 import 'package:nectar/presentation/utils/helpers.dart';
@@ -31,7 +32,9 @@ class StoreCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
                 image: DecorationImage(
-                  image: NetworkImage(store.image!),
+                  image: CachedNetworkImageProvider(
+                    store.image!,
+                  ),
                   fit: BoxFit.cover,
                 ),
               ),

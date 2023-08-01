@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nectar/data/models/product.dart';
 import 'package:nectar/presentation/pages/auth/forgot_password_page.dart';
 import 'package:nectar/presentation/pages/map/select_location_page.dart';
 import 'package:nectar/presentation/pages/auth/verification_page.dart';
@@ -117,7 +118,9 @@ class AppRouter {
         );
       case productDetailsRoute:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const ProductDetailsPage(),
+          builder: (_) => ProductDetailsPage(
+            product: settings.arguments as Product,
+          ),
         );
       case promoCodesRoute:
         return MaterialPageRoute<dynamic>(

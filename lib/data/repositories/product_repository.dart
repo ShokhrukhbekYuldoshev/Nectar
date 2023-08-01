@@ -25,7 +25,7 @@ class ProductRepository {
   // get product quantity in cart
   static int getQuantity(Product product) {
     for (OrderProduct item in cart) {
-      if (item.product.id == product.id) {
+      if (item.product == product) {
         return item.quantity;
       }
     }
@@ -66,6 +66,20 @@ class ProductRepository {
       cart.add(product);
     }
     await updateHive();
+  }
+
+  static bool isFavorite(Product product) {
+    // get user
+    user_model.User user = box.get("user");
+
+    // initialize favoriteProducts if null
+    user.favoriteProducts ??= [];
+    print(user.favoriteProducts);
+    // check if product is in favorite
+    return user.favoriteProducts?.contains(
+          FirebaseFirestore.instance.collection('products').doc(product.id),
+        ) ??
+        false;
   }
 
   // update favorite
