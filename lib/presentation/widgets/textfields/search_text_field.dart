@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 
 class SearchTextField extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onSubmitted;
+  final VoidCallback? onChanged;
   final TextEditingController controller;
   final String hintText;
 
   const SearchTextField({
     super.key,
-    required this.onPressed,
+    this.onSubmitted,
+    this.onChanged,
     required this.controller,
     required this.hintText,
   });
@@ -16,10 +18,13 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: (_) {
+        if (onChanged == null) return;
+        onChanged!();
+      },
       onSubmitted: (_) {
-        if (controller.text.isNotEmpty) {
-          onPressed();
-        }
+        if (onSubmitted == null) return;
+        onSubmitted!();
       },
       controller: controller,
       textInputAction: TextInputAction.search,
@@ -29,9 +34,8 @@ class SearchTextField extends StatelessWidget {
         hintText: hintText,
         suffixIcon: IconButton(
           onPressed: () {
-            if (controller.text.isNotEmpty) {
-              onPressed();
-            }
+            if (onSubmitted == null) return;
+            onSubmitted!();
           },
           icon: const Icon(
             Icons.search_rounded,

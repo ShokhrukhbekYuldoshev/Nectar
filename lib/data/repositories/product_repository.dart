@@ -23,7 +23,7 @@ class ProductRepository {
   }
 
   // get product quantity in cart
-  static int getQuantity(Product product) {
+  static num getQuantity(Product product) {
     for (OrderProduct item in cart) {
       if (item.product == product) {
         return item.quantity;
@@ -47,7 +47,7 @@ class ProductRepository {
   }
 
   // update cart
-  Future<void> updateCart(OrderProduct product, int quantity) async {
+  Future<void> updateCart(OrderProduct product, num quantity) async {
     // guard clause
     if (quantity < 0) return;
 
@@ -74,7 +74,7 @@ class ProductRepository {
 
     // initialize favoriteProducts if null
     user.favoriteProducts ??= [];
-    print(user.favoriteProducts);
+
     // check if product is in favorite
     return user.favoriteProducts?.contains(
           FirebaseFirestore.instance.collection('products').doc(product.id),

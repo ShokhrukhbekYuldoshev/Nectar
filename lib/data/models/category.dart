@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class Category extends Equatable {
+  final String? id;
   final String name;
   final String? description;
   final String? image;
@@ -10,6 +11,7 @@ class Category extends Equatable {
   final DateTime updatedAt;
 
   const Category({
+    this.id,
     required this.name,
     this.description,
     this.image,
@@ -18,6 +20,7 @@ class Category extends Equatable {
   });
 
   Category copyWith({
+    String? id,
     String? name,
     String? description,
     String? image,
@@ -25,6 +28,7 @@ class Category extends Equatable {
     DateTime? updatedAt,
   }) {
     return Category(
+      id: id ?? this.id,
       name: name ?? this.name,
       description: description ?? this.description,
       image: image ?? this.image,
@@ -45,6 +49,7 @@ class Category extends Equatable {
 
   factory Category.fromMap(Map<String, dynamic> map) {
     return Category(
+      id: map['id'] as String?,
       name: map['name'] as String,
       description:
           map['description'] != null ? map['description'] as String : null,
@@ -63,5 +68,12 @@ class Category extends Equatable {
       Category.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  List<Object?> get props => [name, description, image, createdAt, updatedAt];
+  List<Object?> get props => [
+        id,
+        name,
+        description,
+        image,
+        createdAt,
+        updatedAt,
+      ];
 }

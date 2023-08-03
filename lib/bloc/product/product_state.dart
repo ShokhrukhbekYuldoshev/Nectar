@@ -11,7 +11,7 @@ class ProductInitial extends ProductState {}
 
 class ProductCartUpdated extends ProductState {
   final OrderProduct product;
-  final int quantity;
+  final num quantity;
 
   const ProductCartUpdated({
     required this.product,

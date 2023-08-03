@@ -6,7 +6,7 @@ import 'package:nectar/data/models/product.dart';
 // ignore: must_be_immutable
 class OrderProduct extends Equatable {
   final Product product;
-  int quantity;
+  num quantity;
   OrderProduct({
     required this.product,
     required this.quantity,
@@ -14,7 +14,7 @@ class OrderProduct extends Equatable {
 
   OrderProduct copyWith({
     Product? product,
-    int? quantity,
+    num? quantity,
   }) {
     return OrderProduct(
       product: product ?? this.product,
@@ -32,7 +32,7 @@ class OrderProduct extends Equatable {
   factory OrderProduct.fromMap(Map<String, dynamic> map) {
     return OrderProduct(
       product: Product.fromMap(map['product'] as Map<String, dynamic>),
-      quantity: map['quantity'] as int,
+      quantity: map['quantity'] as num,
     );
   }
 

@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 class PromoCode extends Equatable {
   final String code;
   final String description;
-  final double discount;
+  final num discount;
 
   const PromoCode({
     required this.code,
@@ -19,7 +19,7 @@ class PromoCode extends Equatable {
   PromoCode copyWith({
     String? code,
     String? description,
-    double? discount,
+    num? discount,
   }) {
     return PromoCode(
       code: code ?? this.code,
@@ -40,7 +40,7 @@ class PromoCode extends Equatable {
     return PromoCode(
       code: map['code'] as String,
       description: map['description'] as String,
-      discount: map['discount'] as double,
+      discount: map['discount'] as num,
     );
   }
 

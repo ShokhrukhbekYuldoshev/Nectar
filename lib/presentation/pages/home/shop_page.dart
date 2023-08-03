@@ -96,7 +96,7 @@ class _ShopPageState extends State<ShopPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: SearchTextField(
-                  onPressed: () {},
+                  onSubmitted: () {},
                   controller: searchController,
                   hintText: 'Search for products',
                 ),

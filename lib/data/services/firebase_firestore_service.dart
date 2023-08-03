@@ -67,6 +67,20 @@ class FirebaseFirestoreService {
     await _firebaseFirestore.collection(collectionName).add(data);
   }
 
+  Future<void> addMultipleDocuments(
+    String collectionName,
+    List<Map<String, dynamic>> data,
+  ) async {
+    final WriteBatch batch = _firebaseFirestore.batch();
+    for (var item in data) {
+      batch.set(
+        _firebaseFirestore.collection(collectionName).doc(),
+        item,
+      );
+    }
+    await batch.commit();
+  }
+
   Future<void> updateDocument(
     String collectionName,
     String documentId,

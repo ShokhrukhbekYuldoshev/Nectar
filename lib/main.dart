@@ -4,18 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:nectar/bloc/account/account_bloc.dart';
+import 'package:nectar/bloc/explore/explore_bloc.dart';
 import 'package:nectar/bloc/favorites/favorites_bloc.dart';
 import 'package:nectar/bloc/forgot_password/forgot_password_bloc.dart';
 import 'package:nectar/bloc/login/login_bloc.dart';
 import 'package:nectar/bloc/product/product_bloc.dart';
+import 'package:nectar/bloc/category_products/category_products_bloc.dart';
 import 'package:nectar/bloc/register/register_bloc.dart';
 import 'package:nectar/bloc/register_phone/register_phone_bloc.dart';
 import 'package:nectar/bloc/shop/shop_bloc.dart';
-import 'package:nectar/data/enums/unit.dart';
-import 'package:nectar/data/models/product.dart';
-import 'package:nectar/data/models/store.dart';
 import 'package:nectar/data/repositories/product_repository.dart';
-import 'package:nectar/data/services/firebase_firestore_service.dart';
 import 'package:nectar/data/services/hive_adapters.dart';
 import 'package:nectar/firebase_options.dart';
 import 'package:nectar/presentation/pages/splash_page.dart';
@@ -33,41 +31,6 @@ Future<void> main() async {
   registerAdapters();
   await Hive.openBox('myBox');
   ProductRepository.loadCart();
-  // grocery
-  // Product product = Product(
-  //   name: 'Potato',
-  //   store: await FirebaseFirestoreService()
-  //       .getDocumentReference('stores', 'name', 'D-Mart'),
-  //   description: null,
-  //   price: 10.0,
-  //   unit: Unit.kg,
-  //   images: null,
-  //   category: null,
-  //   brand: 'Yummy',
-  //   nutritions: const {'protein': 10.0, 'fat': 10.0},
-  //   createdAt: DateTime.now(),
-  //   updatedAt: DateTime.now(),
-  // );
-
-  // Store store = Store(
-  //   name: 'Downtown Supermarket',
-  //   description: null,
-  //   image: null,
-  //   createdAt: DateTime.now(),
-  //   updatedAt: DateTime.now(),
-  //   latitude: 0.00,
-  //   longitude: 0.00,
-  // );
-
-  // await FirebaseFirestoreService().addDocument(
-  //   'products',
-  //   product.toMap(),
-  // );
-
-  // await FirebaseFirestoreService().addDocument(
-  //   'stores',
-  //   store.toMap(),
-  // );
 
   runApp(
     MultiBlocProvider(
@@ -95,6 +58,12 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (context) => FavoritesBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ExploreBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CategoryProductsBloc(),
         ),
       ],
       child: const MyApp(),

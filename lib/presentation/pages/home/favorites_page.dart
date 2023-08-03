@@ -67,6 +67,41 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       ),
                     );
                   }
+
+                  if (favorites.isEmpty) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 30,
+                      ),
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.favorite_border_outlined,
+                            size: 80,
+                            color: AppColors.lightGray,
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            'No Favorites',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            'You have not added any favorites yet.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.lightGray,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
                   return ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nectar/data/models/category.dart';
 import 'package:nectar/data/models/product.dart';
 import 'package:nectar/presentation/pages/auth/forgot_password_page.dart';
 import 'package:nectar/presentation/pages/map/select_location_page.dart';
@@ -8,7 +9,7 @@ import 'package:nectar/presentation/pages/account/account_page.dart';
 import 'package:nectar/presentation/pages/auth/onboarding_page.dart';
 import 'package:nectar/presentation/pages/auth/register_phone_page.dart';
 import 'package:nectar/presentation/pages/auth/register_page.dart';
-import 'package:nectar/presentation/pages/explore/products_page.dart';
+import 'package:nectar/presentation/pages/explore/category_products_page.dart';
 
 import 'package:nectar/presentation/pages/account/help_page.dart';
 import 'package:nectar/presentation/pages/account/my_details_page.dart';
@@ -30,7 +31,7 @@ import 'package:nectar/presentation/pages/splash_page.dart';
 class AppRouter {
   static const String aboutRoute = '/about';
   static const String accountRoute = '/account';
-  static const String productsRoute = '/products';
+  static const String categoryProductsRoute = '/category-products';
   static const String cartRoute = '/cart';
   static const String exploreRoute = '/explore';
   static const String favoritesRoute = '/favorite';
@@ -64,9 +65,10 @@ class AppRouter {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const AccountPage(),
         );
-      case productsRoute:
+      case categoryProductsRoute:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => ProductsPage(title: settings.arguments as String),
+          builder: (_) =>
+              CategoryProductsPage(category: settings.arguments as Category),
         );
       case cartRoute:
         return MaterialPageRoute<dynamic>(

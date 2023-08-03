@@ -64,11 +64,13 @@ class ProductCard extends StatelessWidget {
             // title
             Text(
               product.name,
+              maxLines: 1,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             // unit
             Text(
               "1 ${product.unit.name}",
+              maxLines: 1,
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const Spacer(),
@@ -78,6 +80,7 @@ class ProductCard extends StatelessWidget {
                 // price
                 Text(
                   '\$${product.price.toStringAsFixed(2)}',
+                  maxLines: 1,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 // add to cart

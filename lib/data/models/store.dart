@@ -6,8 +6,8 @@ class Store extends Equatable {
   final String? image;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final double latitude;
-  final double longitude;
+  final num latitude;
+  final num longitude;
 
   const Store({
     required this.name,
@@ -25,8 +25,8 @@ class Store extends Equatable {
     String? image,
     DateTime? createdAt,
     DateTime? updatedAt,
-    double? latitude,
-    double? longitude,
+    num? latitude,
+    num? longitude,
   }) {
     return Store(
       name: name ?? this.name,
@@ -58,8 +58,8 @@ class Store extends Equatable {
       image: map['image'],
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
       updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
-      latitude: map['latitude'] as double,
-      longitude: map['longitude'] as double,
+      latitude: map['latitude'] as num,
+      longitude: map['longitude'] as num,
     );
   }
 

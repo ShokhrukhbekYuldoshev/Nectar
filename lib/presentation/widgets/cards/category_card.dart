@@ -1,16 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar/data/models/category.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/helpers.dart';
 
 class CategoryCard extends StatelessWidget {
-  final String title;
-  final String imageUrl;
+  final Category category;
 
   const CategoryCard({
     super.key,
-    required this.title,
-    required this.imageUrl,
+    required this.category,
   });
 
   @override
@@ -19,7 +18,11 @@ class CategoryCard extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, AppRouter.productsRoute, arguments: title);
+        Navigator.pushNamed(
+          context,
+          AppRouter.categoryProductsRoute,
+          arguments: category,
+        );
       },
       borderRadius: BorderRadius.circular(18),
       child: Container(
@@ -41,15 +44,20 @@ class CategoryCard extends StatelessWidget {
         child: Column(
           children: [
             // image
-            CachedNetworkImage(
-              imageUrl: imageUrl,
-              height: 90,
-            ),
+            category.image != null && category.image!.isNotEmpty
+                ? CachedNetworkImage(
+                    imageUrl: category.image!,
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    fit: BoxFit.cover,
+                    height: 90,
+                  )
+                : const Icon(Icons.category, size: 90, color: Colors.grey),
             const SizedBox(height: 20),
             // title
             Expanded(
               child: Text(
-                title,
+                category.name,
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

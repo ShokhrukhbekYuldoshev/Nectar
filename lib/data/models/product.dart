@@ -9,12 +9,12 @@ class Product extends Equatable {
   final String name;
   final DocumentReference store;
   final String? description;
-  final double price;
+  final num price;
   final Unit unit;
   final List<String>? images;
   final DocumentReference? category;
   final String? brand;
-  final Map<dynamic, dynamic>? nutritions;
+  final Map<String, num>? nutritions;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -38,12 +38,12 @@ class Product extends Equatable {
     String? name,
     DocumentReference? store,
     String? description,
-    double? price,
+    num? price,
     Unit? unit,
     List<String>? images,
     DocumentReference? category,
     String? brand,
-    Map<String, double>? nutritions,
+    Map<String, num>? nutritions,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -85,7 +85,7 @@ class Product extends Equatable {
       store: map['store'] as DocumentReference,
       description:
           map['description'] != null ? map['description'] as String : null,
-      price: map['price'] as double,
+      price: map['price'] as num,
       unit: unitFromName(map['unit'] as String),
       images: map['images'] != null
           ? List<String>.from((map['images'] as List<String>))
@@ -93,8 +93,8 @@ class Product extends Equatable {
       category:
           map['category'] != null ? map['category'] as DocumentReference : null,
       brand: map['brand'] != null ? map['brand'] as String : null,
-      nutritions: map['nutritions'] != null
-          ? Map<String, double>.from(map['nutritions'])
+      nutritions: map['nutritions'] is Map
+          ? Map<String, num>.from(map['nutritions'])
           : null,
       createdAt: map['createdAt'].toDate(),
       updatedAt: map['updatedAt'].toDate(),

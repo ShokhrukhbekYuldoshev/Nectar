@@ -10,7 +10,7 @@ abstract class ProductEvent extends Equatable {
 // update cart
 class UpdateCart extends ProductEvent {
   final OrderProduct orderProduct;
-  final int quantity;
+  final num quantity;
 
   const UpdateCart({
     required this.orderProduct,

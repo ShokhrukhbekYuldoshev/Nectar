@@ -333,7 +333,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                 ),
                               ),
                               Text(
-                                e.value.toStringAsFixed(2) + 'g',
+                                '${e.value.toStringAsFixed(2)}g',
                                 style: const TextStyle(
                                   fontSize: 16,
                                 ),

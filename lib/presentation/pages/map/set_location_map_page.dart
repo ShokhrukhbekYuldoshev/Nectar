@@ -76,7 +76,7 @@ class _SetLocationMapPageState extends State<SetLocationMapPage> {
         children: [
           TileLayer(
             urlTemplate:
-                "https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=$MAPBOX_ACCESS_TOKEN",
+                "https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=$mapboxAccessToken",
           ),
           MarkerLayer(
             markers: [

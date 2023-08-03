@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nectar/data/models/product.dart';
 import 'package:nectar/data/repositories/favorites_repository.dart';
 
@@ -15,6 +16,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         final products = await favoritesRepository.fetchFavorites();
         emit(FavoritesLoaded(products: products));
       } catch (e, s) {
+        debugPrintStack(label: e.toString(), stackTrace: s);
         emit(FavoritesError(message: e.toString()));
       }
     });
