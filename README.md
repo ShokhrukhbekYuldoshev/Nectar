@@ -56,7 +56,7 @@ flutter pub get
 3. Mapbox is used for map. Go to https://www.mapbox.com/ and create a new token. Then, create a file named secrets.dart in lib folder and add the following code:
 
 ```dart
-const String MAPBOX_ACCESS_TOKEN = {YOUR_MAPBOX_ACCESS_TOKEN};
+const String mapboxAccessToken = {YOUR_MAPBOX_ACCESS_TOKEN};
 ```
 
 4. Run the app
