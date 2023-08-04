@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Store extends Equatable {
+  final String? id;
   final String name;
   final String? description;
   final String? image;
@@ -10,6 +11,7 @@ class Store extends Equatable {
   final num longitude;
 
   const Store({
+    this.id,
     required this.name,
     this.description,
     this.image,
@@ -20,6 +22,7 @@ class Store extends Equatable {
   });
 
   Store copyWith({
+    String? id,
     String? name,
     String? description,
     String? image,
@@ -29,6 +32,7 @@ class Store extends Equatable {
     num? longitude,
   }) {
     return Store(
+      id: id ?? this.id,
       name: name ?? this.name,
       description: description ?? this.description,
       image: image ?? this.image,
@@ -65,6 +69,7 @@ class Store extends Equatable {
 
   factory Store.empty() {
     return Store(
+      id: null,
       name: '',
       description: '',
       image: '',
@@ -77,6 +82,7 @@ class Store extends Equatable {
 
   @override
   List<Object?> get props => [
+        id,
         name,
         description,
         image,

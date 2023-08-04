@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar/data/models/category.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
+import 'package:nectar/presentation/utils/extensions.dart';
 import 'package:nectar/presentation/utils/helpers.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -14,7 +15,7 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color randomColor = generateRandomColor();
+    final Color randomColor = generateRandomColor().darken();
 
     return InkWell(
       onTap: () {

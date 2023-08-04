@@ -16,6 +16,7 @@ import 'package:nectar/bloc/register/register_bloc.dart';
 import 'package:nectar/bloc/register_phone/register_phone_bloc.dart';
 import 'package:nectar/bloc/search/search_bloc.dart';
 import 'package:nectar/bloc/shop/shop_bloc.dart';
+import 'package:nectar/bloc/store_details/store_details_bloc.dart';
 import 'package:nectar/data/repositories/product_repository.dart';
 import 'package:nectar/data/services/hive_adapters.dart';
 import 'package:nectar/firebase_options.dart';
@@ -79,6 +80,9 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (context) => SearchBloc(),
+        ),
+        BlocProvider(
+          create: (context) => StoreDetailsBloc(),
         ),
       ],
       child: const MyApp(),

@@ -292,10 +292,10 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                         await Hive.box("myBox").put("user", user);
                         await FirebaseFirestoreService()
                             .updateDocumentWithQuery(
-                          "users",
-                          "uid",
-                          user.uid,
-                          user.toMap(),
+                          collection: "users",
+                          field: "uid",
+                          value: user.uid,
+                          data: user.toMap(),
                         );
 
                         // hide loading and navigate to home

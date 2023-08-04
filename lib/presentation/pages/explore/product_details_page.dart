@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nectar/presentation/utils/extensions.dart';
+import 'package:nectar/presentation/utils/helpers.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'package:nectar/bloc/product/product_bloc.dart';
@@ -34,9 +36,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     children: [
                       Container(
                         height: 400,
-                        decoration: const BoxDecoration(
-                          color: AppColors.lightGray,
-                          borderRadius: BorderRadius.only(
+                        decoration: BoxDecoration(
+                          color: generateRandomColor().darken(),
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(20),
                             bottomRight: Radius.circular(20),
                           ),
@@ -45,7 +47,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           child: Icon(
                             Icons.inventory,
                             size: 100,
-                            color: AppColors.primary,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -53,10 +55,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         top: 40,
                         left: 20,
                         child: IconButton(
+                          icon: const Icon(Icons.arrow_back_ios),
+                          color: Colors.white,
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            Navigator.pop(context);
                           },
-                          icon: const Icon(Icons.arrow_back),
                         ),
                       ),
                       Positioned(
@@ -66,7 +69,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           onPressed: () {
                             // TODO: Implement share functionality
                           },
-                          icon: const Icon(Icons.share),
+                          icon: const Icon(
+                            Icons.share,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],

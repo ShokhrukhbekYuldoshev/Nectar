@@ -13,8 +13,10 @@ class FavoritesRepository {
     // get products from references
     final List<Product> products = [];
     for (var favoriteProduct in favoriteProducts!) {
-      final product =
-          await firestore.getDocument('products', favoriteProduct.id);
+      final product = await firestore.getDocument(
+        collection: 'products',
+        documentId: favoriteProduct.id,
+      );
       products.add(Product.fromMap(product.data() as Map<String, dynamic>)
           .copyWith(id: product.id));
     }

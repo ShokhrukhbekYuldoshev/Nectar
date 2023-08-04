@@ -78,10 +78,10 @@ class _MyDetailsPageState extends State<MyDetailsPage> {
 
                   // update user
                   await FirebaseFirestoreService().updateDocumentWithQuery(
-                    'users',
-                    'uid',
-                    Hive.box('myBox').get('user').uid,
-                    {
+                    collection: 'users',
+                    field: 'uid',
+                    value: Hive.box('myBox').get('user').uid,
+                    data: {
                       'displayName': _nameController.text.trim(),
                       'email': _emailController.text.trim(),
                       'phoneNumber': _phoneController.text.trim(),

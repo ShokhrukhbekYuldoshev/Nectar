@@ -105,8 +105,13 @@ class ProductRepository {
     await box.put('user', user);
 
     // update in firestore
-    await _firestore.updateDocumentWithQuery("users", "uid", user.uid, {
-      "favoriteProducts": user.favoriteProducts,
-    });
+    await _firestore.updateDocumentWithQuery(
+      collection: "users",
+      field: "uid",
+      value: user.uid,
+      data: {
+        "favoriteProducts": user.favoriteProducts,
+      },
+    );
   }
 }

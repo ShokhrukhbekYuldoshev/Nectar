@@ -41,13 +41,14 @@ class ShopRepository {
     DocumentSnapshot? lastSnapshot,
   ) async {
     var snapshot = await _firebaseFirestoreService.getCollectionWithPagination(
-      'stores',
-      limit,
-      lastSnapshot,
+      collection: 'stores',
+      limit: limit,
+      documentSnapshot: lastSnapshot,
     );
 
     return snapshot.docs
-        .map((doc) => Store.fromMap(doc.data() as Map<String, dynamic>))
+        .map((doc) => Store.fromMap(doc.data() as Map<String, dynamic>)
+            .copyWith(id: doc.id))
         .toList();
   }
 }

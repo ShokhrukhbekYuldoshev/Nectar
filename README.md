@@ -16,20 +16,20 @@ This project is still under development.
 -   [x] Profile
 -   [x] Search
 -   [x] Favorites
--   [x] Orders
--   [x] Order Details
+-   [ ] Orders
+-   [ ] Order Details
 -   [ ] Reviews
--   [ ] Payment with Stripe
+-   [ ] Payment
 -   [ ] Tracking
 -   [x] Settings
 -   [x] About
--   [x] Contact
+-   [x] Support
 -   [ ] Notifications
 -   [ ] Dark Mode
 -   [ ] Localization (English, Russian)
 -   [x] Responsive UI
 -   [ ] Animations
--   [x] Firebase Analytics
+-   [ ] Firebase Analytics
 -   [x] Firebase Crashlytics
 
 ## 🔰 Getting Started
