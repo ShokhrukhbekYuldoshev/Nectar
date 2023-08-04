@@ -100,7 +100,7 @@ flutter run
 
 ## 📱 Screenshots
 
-<!-- later -->
+Screenshots will be added later.
 
 ## 📝 License
 
