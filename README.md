@@ -20,6 +20,7 @@ This project is still under development.
 -   [x] Order Details
 -   [ ] Reviews
 -   [ ] Payment with Stripe
+-   [ ] Tracking
 -   [x] Settings
 -   [x] About
 -   [x] Contact
