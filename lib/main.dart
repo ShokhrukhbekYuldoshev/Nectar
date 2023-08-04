@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:nectar/bloc/account/account_bloc.dart';
+import 'package:nectar/bloc/category_products/category_products_bloc.dart';
 import 'package:nectar/bloc/explore/explore_bloc.dart';
 import 'package:nectar/bloc/favorites/favorites_bloc.dart';
 import 'package:nectar/bloc/forgot_password/forgot_password_bloc.dart';
 import 'package:nectar/bloc/login/login_bloc.dart';
 import 'package:nectar/bloc/product/product_bloc.dart';
-import 'package:nectar/bloc/category_products/category_products_bloc.dart';
 import 'package:nectar/bloc/register/register_bloc.dart';
 import 'package:nectar/bloc/register_phone/register_phone_bloc.dart';
 import 'package:nectar/bloc/search/search_bloc.dart';

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import 'package:nectar/bloc/shop/shop_bloc.dart';
 import 'package:nectar/data/models/address.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
@@ -12,7 +14,6 @@ import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/widgets/cards/product_card.dart';
 import 'package:nectar/presentation/widgets/cards/store_card.dart';
 import 'package:nectar/presentation/widgets/textfields/search_text_field.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({

@@ -1,6 +1,7 @@
-import 'package:nectar/secrets.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:dio/dio.dart';
+import 'package:geolocator/geolocator.dart';
+
+import 'package:nectar/secrets.dart';
 
 class Geoservices {
 // get current location, ask for permission if not granted

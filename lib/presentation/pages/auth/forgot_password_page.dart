@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/widgets/buttons/default_button.dart';
 
-import '../../../bloc/forgot_password/forgot_password_bloc.dart';
+import 'package:nectar/bloc/forgot_password/forgot_password_bloc.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});

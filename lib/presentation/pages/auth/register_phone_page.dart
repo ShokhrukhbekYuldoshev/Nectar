@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+
 import 'package:nectar/bloc/register_phone/register_phone_bloc.dart';
+import 'package:nectar/data/models/user.dart' as user_model;
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/widgets/buttons/next_fab.dart';
-import 'package:nectar/data/models/user.dart' as model;
 
 class RegisterPhonePage extends StatefulWidget {
   const RegisterPhonePage({super.key});
@@ -34,7 +35,7 @@ class _RegisterPhonePageState extends State<RegisterPhonePage> {
                   phoneNumber: countryCode + phoneController.text,
                   onVerificationCompleted: (PhoneAuthCredential credential) {},
                   onCodeSent: (String verificationId, int? resendToken) {
-                    model.User user = Hive.box('myBox').get('user');
+                    user_model.User user = Hive.box('myBox').get('user');
                     user.phoneNumber = countryCode + phoneController.text;
                     Hive.box('myBox').put('user', user);
 

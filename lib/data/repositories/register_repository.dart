@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 import 'package:nectar/data/models/address.dart';
+import 'package:nectar/data/models/user.dart' as user_model;
 import 'package:nectar/data/services/auth_service.dart';
-import 'package:nectar/data/models/user.dart' as model;
 import 'package:nectar/data/services/firebase_firestore_service.dart';
 
 class RegisterRepository {
@@ -19,7 +20,7 @@ class RegisterRepository {
     );
 
     // create user data
-    final user = model.User(
+    final user = user_model.User(
       uid: userCredential.user!.uid,
       email: email,
       displayName: userCredential.user!.displayName ?? '',
@@ -44,7 +45,7 @@ class RegisterRepository {
     UserCredential userCredential = await _authService.signInWithGoogle();
 
     // create user data
-    final user = model.User(
+    final user = user_model.User(
       uid: userCredential.user!.uid,
       email: userCredential.user!.email ?? '',
       displayName: userCredential.user!.displayName ?? '',
@@ -69,7 +70,7 @@ class RegisterRepository {
     UserCredential userCredential = await _authService.signInWithFacebook();
 
     // create user data
-    final user = model.User(
+    final user = user_model.User(
       uid: userCredential.user!.uid,
       email: userCredential.user!.email ?? '',
       displayName: userCredential.user!.displayName ?? '',

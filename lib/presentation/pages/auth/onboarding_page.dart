@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/widgets/buttons/default_button.dart';
-import 'package:nectar/presentation/utils/app_router.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});

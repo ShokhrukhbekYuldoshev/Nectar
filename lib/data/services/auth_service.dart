@@ -2,8 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:nectar/data/models/user.dart' as user_model;
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'package:nectar/data/models/user.dart' as user_model;
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;

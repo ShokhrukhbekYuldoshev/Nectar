@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:nectar/bloc/product/product_bloc.dart';
 import 'package:nectar/data/repositories/product_repository.dart';
-import 'package:nectar/presentation/pages/explore/explore_page.dart';
 import 'package:nectar/presentation/pages/account/account_page.dart';
+import 'package:nectar/presentation/pages/explore/explore_page.dart';
 import 'package:nectar/presentation/pages/home/favorites_page.dart';
 import 'package:nectar/presentation/pages/home/shop_page.dart';
 import 'package:nectar/presentation/pages/order/cart_page.dart';

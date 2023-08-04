@@ -132,7 +132,7 @@ class ProductAdapter extends TypeAdapter<Product> {
       images: reader.read(),
       category: reader.read(),
       brand: reader.read(),
-      nutritions: reader.read(),
+      nutritions: Map<String, num>.from(reader.read()),
       createdAt: reader.read(),
       updatedAt: reader.read(),
     );

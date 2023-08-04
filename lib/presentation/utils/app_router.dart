@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
+
 import 'package:nectar/data/models/category.dart';
 import 'package:nectar/data/models/product.dart';
-import 'package:nectar/presentation/pages/auth/forgot_password_page.dart';
-import 'package:nectar/presentation/pages/map/select_location_page.dart';
-import 'package:nectar/presentation/pages/auth/verification_page.dart';
 import 'package:nectar/presentation/pages/account/about_page.dart';
 import 'package:nectar/presentation/pages/account/account_page.dart';
-import 'package:nectar/presentation/pages/auth/onboarding_page.dart';
-import 'package:nectar/presentation/pages/auth/register_phone_page.dart';
-import 'package:nectar/presentation/pages/auth/register_page.dart';
-import 'package:nectar/presentation/pages/explore/category_products_page.dart';
-
 import 'package:nectar/presentation/pages/account/help_page.dart';
 import 'package:nectar/presentation/pages/account/my_details_page.dart';
 import 'package:nectar/presentation/pages/account/notifications_page.dart';
 import 'package:nectar/presentation/pages/account/payment_methods_page.dart';
 import 'package:nectar/presentation/pages/account/promo_codes_page.dart';
-import 'package:nectar/presentation/pages/map/set_location_map_page.dart';
-import 'package:nectar/presentation/pages/order/cart_page.dart';
+import 'package:nectar/presentation/pages/auth/forgot_password_page.dart';
 import 'package:nectar/presentation/pages/auth/login_page.dart';
+import 'package:nectar/presentation/pages/auth/onboarding_page.dart';
+import 'package:nectar/presentation/pages/auth/register_page.dart';
+import 'package:nectar/presentation/pages/auth/register_phone_page.dart';
+import 'package:nectar/presentation/pages/auth/verification_page.dart';
+import 'package:nectar/presentation/pages/explore/category_products_page.dart';
 import 'package:nectar/presentation/pages/explore/explore_page.dart';
-import 'package:nectar/presentation/pages/home/favorites_page.dart';
-import 'package:nectar/presentation/pages/home/home_page.dart';
-import 'package:nectar/presentation/pages/order/order_success_page.dart';
 import 'package:nectar/presentation/pages/explore/product_details_page.dart';
 import 'package:nectar/presentation/pages/explore/search_page.dart';
+import 'package:nectar/presentation/pages/home/favorites_page.dart';
+import 'package:nectar/presentation/pages/home/home_page.dart';
+import 'package:nectar/presentation/pages/map/select_location_page.dart';
+import 'package:nectar/presentation/pages/map/set_location_map_page.dart';
+import 'package:nectar/presentation/pages/order/cart_page.dart';
+import 'package:nectar/presentation/pages/order/order_success_page.dart';
 import 'package:nectar/presentation/pages/order/orders_page.dart';
 import 'package:nectar/presentation/pages/splash_page.dart';
 
