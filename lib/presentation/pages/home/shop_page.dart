@@ -7,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nectar/bloc/shop/shop_bloc.dart';
 import 'package:nectar/data/models/address.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
+import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/widgets/cards/product_card.dart';
 import 'package:nectar/presentation/widgets/cards/store_card.dart';
@@ -96,7 +97,14 @@ class _ShopPageState extends State<ShopPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: SearchTextField(
-                  onSubmitted: () {},
+                  onSubmitted: () {
+                    if (searchController.text.isNotEmpty) {
+                      Navigator.of(context).pushNamed(
+                        AppRouter.searchRoute,
+                        arguments: searchController.text,
+                      );
+                    }
+                  },
                   controller: searchController,
                   hintText: 'Search for products',
                 ),

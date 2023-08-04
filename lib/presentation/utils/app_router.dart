@@ -134,7 +134,9 @@ class AppRouter {
         );
       case searchRoute:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const SearchPage(),
+          builder: (_) => SearchPage(
+            query: settings.arguments as String,
+          ),
         );
       case selectLocationRoute:
         return MaterialPageRoute<dynamic>(

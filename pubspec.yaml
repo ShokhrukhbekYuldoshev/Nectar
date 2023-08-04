@@ -32,6 +32,7 @@ dependencies:
     package_info_plus: ^4.0.2
     pinput: ^2.3.0
     smooth_page_indicator: ^1.1.0
+    url_launcher: ^6.1.12
 
 dev_dependencies:
     flutter_test:
