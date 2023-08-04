@@ -8,36 +8,35 @@ This project is still under development.
 
 ## ✨ Features
 
-- [x] Authentication
-- [x] Home
-- [x] Categories
-- [x] Products
-- [x] Cart
-- [x] Profile
-- [x] Search
-- [x] Favorites
-- [x] Orders
-- [x] Order Details
-- [x] Reviews
-- [x] Payment with Stripe
-- [x] Settings
-- [x] About
-- [x] Contact
-- [x] Notifications
-- [x] Dark Mode
-- [x] Localization (English, Russian)
-- [x] Responsive UI
-- [x] Animations
-- [x] Firebase Cloud Messaging
-- [x] Firebase Analytics
-- [x] Firebase Crashlytics
+-   [x] Authentication
+-   [x] Home
+-   [x] Categories
+-   [x] Products
+-   [x] Cart
+-   [x] Profile
+-   [x] Search
+-   [x] Favorites
+-   [x] Orders
+-   [x] Order Details
+-   [ ] Reviews
+-   [ ] Payment with Stripe
+-   [x] Settings
+-   [x] About
+-   [x] Contact
+-   [ ] Notifications
+-   [ ] Dark Mode
+-   [ ] Localization (English, Russian)
+-   [x] Responsive UI
+-   [ ] Animations
+-   [x] Firebase Analytics
+-   [x] Firebase Crashlytics
 
 ## 🔰 Getting Started
 
 ### Prerequisites
 
-- [Flutter](https://flutter.dev/docs/get-started/install)
-- [Firebase](https://firebase.google.com/docs/flutter/setup)
+-   [Flutter](https://flutter.dev/docs/get-started/install)
+-   [Firebase](https://firebase.google.com/docs/flutter/setup)
 
 ### Installation
 
@@ -77,6 +76,7 @@ flutter run
 | [equatable](https://pub.dev/packages/equatable)                           | 2.0.5   | Simplify Equality Comparisons.                                                                                                                                     |
 | [firebase_auth](https://pub.dev/packages/firebase_auth)                   | 4.7.2   | Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords, phone numbers and identity providers like Google, Facebook and Twitter. |
 | [firebase_core](https://pub.dev/packages/firebase_core)                   | 2.15.0  | Flutter plugin for Firebase Core, enabling connecting to multiple Firebase apps.                                                                                   |
+| [firebase_crashlytics](https://pub.dev/packages/firebase_crashlytics)     | 3.3.4   | Flutter plugin to use the Firebase Crashlytics API.                                                                                                                |
 | [firebase_storage](https://pub.dev/packages/firebase_storage)             | 11.2.5  | Flutter plugin for Firebase Cloud Storage, a powerful, simple, and cost-effective object storage service for Android and iOS.                                      |
 | [flutter](https://flutter.dev/)                                           | 3.10.6  | Flutter SDK.                                                                                                                                                       |
 | [flutter_bloc](https://pub.dev/packages/flutter_bloc)                     | 8.1.3   | State management library for Dart that works with Flutter.                                                                                                         |
@@ -96,7 +96,7 @@ flutter run
 
 ## 🔗 Resources
 
-- [Design](<https://www.figma.com/file/lA6Pp8ZQ9XCZeima0laz7Y/Online-Groceries-App-UI-(Community)>)
+-   [Design](<https://www.figma.com/file/lA6Pp8ZQ9XCZeima0laz7Y/Online-Groceries-App-UI-(Community)>)
 
 ## 📱 Screenshots
 
@@ -110,7 +110,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 👤 Shokhrukhbek Yuldoshev
 
-- Github: [@ShokhrukhbekYuldoshev](https://github.com/ShokhrukhbekYuldoshev)
+-   Github: [@ShokhrukhbekYuldoshev](https://github.com/ShokhrukhbekYuldoshev)
 
 ## 🤝 Contributing
 

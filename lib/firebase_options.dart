@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '403064089399',
     projectId: 'nectar-8e579',
     storageBucket: 'nectar-8e579.appspot.com',
+    androidClientId: '403064089399-arrn7dmiuflnsmi2piboirrvjrmviisb.apps.googleusercontent.com',
     iosClientId: '403064089399-ofsc4ts7siul9vk0j5evlm5vcfh31u7i.apps.googleusercontent.com',
     iosBundleId: 'com.shokhrukhbek.nectar',
   );
