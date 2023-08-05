@@ -24,7 +24,7 @@ class ProductDetailsPage extends StatefulWidget {
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   final carouselController = CarouselController();
   int activeBannerIndex = 0;
-
+  Color randomColor = generateRandomColor().darken();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       Container(
                         height: 400,
                         decoration: BoxDecoration(
-                          color: generateRandomColor().darken(),
+                          color: randomColor,
                           borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(20),
                             bottomRight: Radius.circular(20),
@@ -108,7 +108,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          icon: const Icon(Icons.arrow_back),
+                          icon: const Icon(Icons.arrow_back_ios),
                         ),
                       ),
                       Positioned(

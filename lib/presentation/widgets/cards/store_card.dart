@@ -4,7 +4,7 @@ import 'package:nectar/data/models/store.dart';
 import 'package:nectar/presentation/utils/extensions.dart';
 import 'package:nectar/presentation/utils/helpers.dart';
 
-class StoreCard extends StatelessWidget {
+class StoreCard extends StatefulWidget {
   final Store store;
 
   const StoreCard({
@@ -13,16 +13,21 @@ class StoreCard extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final Color randomColor = generateRandomColor().darken();
+  State<StoreCard> createState() => _StoreCardState();
+}
 
+class _StoreCardState extends State<StoreCard> {
+  final Color randomColor = generateRandomColor().darken();
+
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(18),
       onTap: () {
         Navigator.pushNamed(
           context,
           '/store-details',
-          arguments: store,
+          arguments: widget.store,
         );
       },
       child: Container(
@@ -35,7 +40,7 @@ class StoreCard extends StatelessWidget {
         child: Row(
           children: [
             // image or icon
-            if (store.image != null && store.image!.isNotEmpty)
+            if (widget.store.image != null && widget.store.image!.isNotEmpty)
               Container(
                 height: 150,
                 width: 150,
@@ -43,7 +48,7 @@ class StoreCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
-                      store.image!,
+                      widget.store.image!,
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -68,7 +73,7 @@ class StoreCard extends StatelessWidget {
             const SizedBox(width: 15),
             Expanded(
               child: Text(
-                store.name,
+                widget.store.name,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,

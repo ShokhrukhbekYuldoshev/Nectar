@@ -15,3 +15,17 @@ class FetchStoreDetailsEvent extends StoreDetailsEvent {
   @override
   List<Object> get props => [storeId];
 }
+
+// update favorite
+class UpdateFavorite extends StoreDetailsEvent {
+  final Store store;
+  final bool isFavorite;
+
+  const UpdateFavorite({
+    required this.store,
+    required this.isFavorite,
+  });
+
+  @override
+  List<Object> get props => [store, isFavorite];
+}

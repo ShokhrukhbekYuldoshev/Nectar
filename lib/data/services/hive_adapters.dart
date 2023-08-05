@@ -73,6 +73,7 @@ class UserAdapter extends TypeAdapter<User> {
       phoneNumber: reader.read(),
       address: reader.read(),
       favoriteProducts: reader.read(),
+      favoriteStores: reader.read(),
       createdAt: reader.read(),
       updatedAt: reader.read(),
     );
@@ -87,6 +88,7 @@ class UserAdapter extends TypeAdapter<User> {
     writer.write(obj.phoneNumber);
     writer.write(obj.address);
     writer.write(obj.favoriteProducts);
+    writer.write(obj.favoriteStores);
     writer.write(obj.createdAt);
     writer.write(obj.updatedAt);
   }

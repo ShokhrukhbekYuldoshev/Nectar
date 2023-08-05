@@ -24,8 +24,21 @@ class StoreDetailsLoaded extends StoreDetailsState {
 class StoreDetailsError extends StoreDetailsState {
   final String message;
 
-  const StoreDetailsError(this.message);
+  const StoreDetailsError({required this.message});
 
   @override
   List<Object> get props => [message];
+}
+
+class StoreDetailsFavoriteUpdated extends StoreDetailsState {
+  final Store store;
+  final bool isFavorite;
+
+  const StoreDetailsFavoriteUpdated({
+    required this.store,
+    required this.isFavorite,
+  });
+
+  @override
+  List<Object> get props => [store, isFavorite];
 }

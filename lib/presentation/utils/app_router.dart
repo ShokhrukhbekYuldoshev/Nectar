@@ -21,6 +21,7 @@ import 'package:nectar/presentation/pages/explore/explore_page.dart';
 import 'package:nectar/presentation/pages/explore/product_details_page.dart';
 import 'package:nectar/presentation/pages/explore/search_page.dart';
 import 'package:nectar/presentation/pages/explore/store_details_page.dart';
+import 'package:nectar/presentation/pages/explore/stores_page.dart';
 import 'package:nectar/presentation/pages/home/favorites_page.dart';
 import 'package:nectar/presentation/pages/home/home_page.dart';
 import 'package:nectar/presentation/pages/map/select_location_page.dart';
@@ -52,6 +53,7 @@ class AppRouter {
   static const String searchRoute = '/search';
   static const String selectLocationRoute = '/select-location';
   static const String setLocationMapRoute = '/set-location-map';
+  static const String storesRoute = '/stores';
   static const String storeDetailsRoute = '/store-details';
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
@@ -148,6 +150,10 @@ class AppRouter {
       case setLocationMapRoute:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const SetLocationMapPage(),
+        );
+      case storesRoute:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const StoresPage(),
         );
       case storeDetailsRoute:
         return MaterialPageRoute<dynamic>(

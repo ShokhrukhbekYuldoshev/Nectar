@@ -12,6 +12,7 @@ class User extends Equatable {
   String phoneNumber;
   Address address;
   List<dynamic>? favoriteProducts;
+  List<dynamic>? favoriteStores;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -23,6 +24,7 @@ class User extends Equatable {
     required this.phoneNumber,
     required this.address,
     this.favoriteProducts,
+    this.favoriteStores,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -35,6 +37,7 @@ class User extends Equatable {
     String? phoneNumber,
     Address? address,
     List<DocumentReference>? favoriteProducts,
+    List<DocumentReference>? favoriteStores,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -46,6 +49,7 @@ class User extends Equatable {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       address: address ?? this.address,
       favoriteProducts: favoriteProducts ?? this.favoriteProducts,
+      favoriteStores: favoriteStores ?? this.favoriteStores,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
@@ -60,6 +64,7 @@ class User extends Equatable {
       'phoneNumber': phoneNumber,
       'address': address.toMap(),
       'favoriteProducts': favoriteProducts,
+      'favoriteStores': favoriteStores,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'updatedAt': updatedAt.millisecondsSinceEpoch,
     };
@@ -80,6 +85,13 @@ class User extends Equatable {
               ),
             )
           : null,
+      favoriteStores: map['favoriteStores'] != null
+          ? List<DocumentReference>.from(
+              map['favoriteStores']?.map(
+                (x) => x,
+              ),
+            )
+          : null,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
       updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
     );
@@ -87,8 +99,9 @@ class User extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User.fromJson(String source) => User.fromMap(
+        json.decode(source) as Map<String, dynamic>,
+      );
 
   @override
   bool get stringify => true;
@@ -102,6 +115,7 @@ class User extends Equatable {
         phoneNumber,
         address,
         favoriteProducts,
+        favoriteStores,
         createdAt,
         updatedAt,
       ];

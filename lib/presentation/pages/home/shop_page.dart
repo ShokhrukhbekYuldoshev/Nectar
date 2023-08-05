@@ -220,7 +220,11 @@ class _ShopPageState extends State<ShopPage> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            AppRouter.storesRoute,
+                          );
+                        },
                         child: const Text('See All'),
                       ),
                     ],

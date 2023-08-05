@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:nectar/data/models/product.dart';
 import 'package:nectar/data/models/review.dart';
+import 'package:nectar/data/models/store.dart';
 import 'package:nectar/data/repositories/store_details_repository.dart';
 
 part 'store_details_event.dart';
@@ -18,8 +20,27 @@ class StoreDetailsBloc extends Bloc<StoreDetailsEvent, StoreDetailsState> {
         final List<Review> reviews =
             await storeDetailsRepository.getReviews(event.storeId);
         emit(StoreDetailsLoaded(products, reviews));
-      } catch (e) {
-        emit(StoreDetailsError(e.toString()));
+      } catch (e, s) {
+        debugPrintStack(label: e.toString(), stackTrace: s);
+        emit(StoreDetailsError(message: e.toString()));
+      }
+    });
+    on<UpdateFavorite>((event, emit) async {
+      try {
+        emit(StoreDetailsInitial());
+        await storeDetailsRepository.updateFavorite(
+          event.store,
+          event.isFavorite,
+        );
+        emit(
+          StoreDetailsFavoriteUpdated(
+            store: event.store,
+            isFavorite: event.isFavorite,
+          ),
+        );
+      } catch (e, s) {
+        debugPrintStack(label: e.toString(), stackTrace: s);
+        emit(StoreDetailsError(message: e.toString()));
       }
     });
   }

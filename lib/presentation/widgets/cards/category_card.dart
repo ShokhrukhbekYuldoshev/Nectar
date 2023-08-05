@@ -5,7 +5,7 @@ import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/extensions.dart';
 import 'package:nectar/presentation/utils/helpers.dart';
 
-class CategoryCard extends StatelessWidget {
+class CategoryCard extends StatefulWidget {
   final Category category;
 
   const CategoryCard({
@@ -14,15 +14,19 @@ class CategoryCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final Color randomColor = generateRandomColor().darken();
+  State<CategoryCard> createState() => _CategoryCardState();
+}
 
+class _CategoryCardState extends State<CategoryCard> {
+  final Color randomColor = generateRandomColor().darken();
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(
           context,
           AppRouter.categoryProductsRoute,
-          arguments: category,
+          arguments: widget.category,
         );
       },
       borderRadius: BorderRadius.circular(18),
@@ -45,9 +49,9 @@ class CategoryCard extends StatelessWidget {
         child: Column(
           children: [
             // image
-            category.image != null && category.image!.isNotEmpty
+            widget.category.image != null && widget.category.image!.isNotEmpty
                 ? CachedNetworkImage(
-                    imageUrl: category.image!,
+                    imageUrl: widget.category.image!,
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
                     fit: BoxFit.cover,
@@ -58,7 +62,7 @@ class CategoryCard extends StatelessWidget {
             // title
             Expanded(
               child: Text(
-                category.name,
+                widget.category.name,
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

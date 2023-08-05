@@ -11,7 +11,8 @@ This project is still under development.
 -   [x] Authentication
 -   [x] Home
 -   [x] Categories
--   [x] Products
+-   [x] Products (List, Details)
+-   [x] Stores (List, Details)
 -   [x] Cart
 -   [x] Profile
 -   [x] Search

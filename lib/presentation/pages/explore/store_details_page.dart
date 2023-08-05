@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:nectar/bloc/store_details/store_details_bloc.dart';
+import 'package:nectar/data/models/product.dart';
+import 'package:nectar/data/models/review.dart';
 import 'package:nectar/data/models/store.dart';
+import 'package:nectar/data/repositories/store_details_repository.dart';
 import 'package:nectar/presentation/utils/app_colors.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 import 'package:nectar/presentation/utils/extensions.dart';
@@ -19,6 +23,9 @@ class StoreDetailsPage extends StatefulWidget {
 }
 
 class _StoreDetailsPageState extends State<StoreDetailsPage> {
+  final List<Product> products = [];
+  final List<Review> reviews = [];
+
   @override
   void initState() {
     super.initState();
@@ -31,59 +38,59 @@ class _StoreDetailsPageState extends State<StoreDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: BlocBuilder<StoreDetailsBloc, StoreDetailsState>(
-          builder: (context, state) {
-            if (state is StoreDetailsLoading) {
-              return SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            } else if (state is StoreDetailsLoaded) {
-              return Column(
-                children: [
-                  StoreDetailsHeader(
+      body: BlocListener<StoreDetailsBloc, StoreDetailsState>(
+        listener: (context, state) {
+          if (state is StoreDetailsLoaded) {
+            products.addAll(state.products);
+            reviews.addAll(state.reviews);
+          }
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              StoreDetailsHeader(
+                store: widget.store,
+              ),
+              BlocBuilder<StoreDetailsBloc, StoreDetailsState>(
+                builder: (context, state) {
+                  return StoreDetailsBody(
                     store: widget.store,
-                  ),
-                  StoreDetailsBody(
-                    store: widget.store,
-                    products: state.products,
-                    reviews: state.reviews,
-                  ),
-                ],
-              );
-            } else if (state is StoreDetailsError) {
-              return Center(
-                child: Text(state.message),
-              );
-            } else {
-              return const Center(
-                child: Text('Something went wrong'),
-              );
-            }
-          },
+                    products: products,
+                    reviews: reviews,
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class StoreDetailsHeader extends StatelessWidget {
+class StoreDetailsHeader extends StatefulWidget {
   final Store store;
 
-  const StoreDetailsHeader({super.key, required this.store});
+  const StoreDetailsHeader({
+    Key? key,
+    required this.store,
+  }) : super(key: key);
 
+  @override
+  State<StoreDetailsHeader> createState() => _StoreDetailsHeaderState();
+}
+
+class _StoreDetailsHeaderState extends State<StoreDetailsHeader> {
+  Color randomColor = generateRandomColor().darken();
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        store.image == null || store.image!.isEmpty
+        widget.store.image == null || widget.store.image!.isEmpty
             ? Container(
                 height: 400,
                 decoration: BoxDecoration(
-                  color: generateRandomColor().darken(),
+                  color: randomColor,
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20),
@@ -102,7 +109,7 @@ class StoreDetailsHeader extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(store.image!),
+                    image: NetworkImage(widget.store.image!),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -169,15 +176,43 @@ class StoreDetailsBody extends StatelessWidget {
                   ),
                 ),
                 // location
-                IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    SvgAssets.location,
-                    colorFilter: const ColorFilter.mode(
-                      AppColors.primary,
-                      BlendMode.srcIn,
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        SvgAssets.location,
+                        colorFilter: const ColorFilter.mode(
+                          AppColors.primary,
+                          BlendMode.srcIn,
+                        ),
+                      ),
                     ),
-                  ),
+                    BlocBuilder<StoreDetailsBloc, StoreDetailsState>(
+                      builder: (context, state) {
+                        return IconButton(
+                          onPressed: () {
+                            context.read<StoreDetailsBloc>().add(
+                                  UpdateFavorite(
+                                    store: store,
+                                    isFavorite:
+                                        !StoreDetailsRepository.isFavorite(
+                                      store,
+                                    ),
+                                  ),
+                                );
+                          },
+                          iconSize: 30,
+                          icon: StoreDetailsRepository.isFavorite(store)
+                              ? const Icon(
+                                  Icons.favorite,
+                                  color: AppColors.primary,
+                                )
+                              : SvgPicture.asset(SvgAssets.favorite),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
