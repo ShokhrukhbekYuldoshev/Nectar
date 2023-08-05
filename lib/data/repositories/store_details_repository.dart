@@ -76,5 +76,15 @@ class StoreDetailsRepository {
 
     // update user
     await box.put("user", user);
+
+    // update in firestore
+    await _firebaseFirestoreService.updateDocumentWithQuery(
+      collection: "users",
+      field: "uid",
+      value: user.uid,
+      data: {
+        "favoriteStores": user.favoriteStores,
+      },
+    );
   }
 }
