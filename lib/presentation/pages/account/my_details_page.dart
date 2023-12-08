@@ -11,7 +11,7 @@ import 'package:nectar/presentation/utils/helpers.dart';
 import 'package:nectar/presentation/widgets/buttons/default_button.dart';
 
 class MyDetailsPage extends StatefulWidget {
-  const MyDetailsPage({Key? key}) : super(key: key);
+  const MyDetailsPage({super.key});
 
   @override
   State<MyDetailsPage> createState() => _MyDetailsPageState();

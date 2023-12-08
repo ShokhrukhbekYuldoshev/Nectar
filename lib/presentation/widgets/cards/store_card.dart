@@ -8,9 +8,9 @@ class StoreCard extends StatefulWidget {
   final Store store;
 
   const StoreCard({
-    Key? key,
+    super.key,
     required this.store,
-  }) : super(key: key);
+  });
 
   @override
   State<StoreCard> createState() => _StoreCardState();

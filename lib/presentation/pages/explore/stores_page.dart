@@ -7,7 +7,7 @@ import 'package:nectar/data/models/store.dart';
 import 'package:nectar/presentation/widgets/cards/store_card.dart';
 
 class StoresPage extends StatefulWidget {
-  const StoresPage({Key? key}) : super(key: key);
+  const StoresPage({super.key});
 
   @override
   State<StoresPage> createState() => _StoresPageState();

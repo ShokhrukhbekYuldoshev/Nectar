@@ -65,13 +65,15 @@ class _SetLocationMapPageState extends State<SetLocationMapPage> {
       ),
       body: FlutterMap(
         options: MapOptions(
-          zoom: 18.0,
+          initialZoom: 18.0,
           maxZoom: 18.0,
-          center: selectedLocation,
+          initialCenter: selectedLocation,
           onTap: (tapPosition, latLng) => _selectLocation(latLng),
-          maxBounds: LatLngBounds(
-            const LatLng(-90, -180.0),
-            const LatLng(90.0, 180.0),
+          cameraConstraint: CameraConstraint.contain(
+            bounds: LatLngBounds(
+              const LatLng(-90, -180.0),
+              const LatLng(90.0, 180.0),
+            ),
           ),
         ),
         children: [
@@ -85,7 +87,7 @@ class _SetLocationMapPageState extends State<SetLocationMapPage> {
                 width: 30,
                 height: 30,
                 point: selectedLocation,
-                builder: (ctx) => SvgPicture.asset(
+                child: SvgPicture.asset(
                   "assets/svg/location.svg",
                   colorFilter: const ColorFilter.mode(
                     AppColors.primary,

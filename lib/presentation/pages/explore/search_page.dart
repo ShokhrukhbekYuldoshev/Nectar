@@ -9,7 +9,7 @@ import 'package:nectar/presentation/widgets/cards/product_card.dart';
 
 class SearchPage extends StatefulWidget {
   final String query;
-  const SearchPage({Key? key, required this.query}) : super(key: key);
+  const SearchPage({super.key, required this.query});
 
   @override
   State<SearchPage> createState() => _SearchPageState();

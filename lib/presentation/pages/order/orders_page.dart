@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // TODO: Implement OrdersPage
 
 class OrdersPage extends StatelessWidget {
-  const OrdersPage({Key? key}) : super(key: key);
+  const OrdersPage({super.key});
 
   @override
   Widget build(BuildContext context) {

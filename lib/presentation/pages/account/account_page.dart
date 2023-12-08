@@ -10,7 +10,7 @@ import 'package:nectar/presentation/utils/app_router.dart';
 import 'package:nectar/presentation/utils/assets.dart';
 
 class AccountPage extends StatelessWidget {
-  const AccountPage({Key? key}) : super(key: key);
+  const AccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {

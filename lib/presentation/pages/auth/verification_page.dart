@@ -10,8 +10,7 @@ import 'package:nectar/presentation/utils/assets.dart';
 
 class VerificationPage extends StatefulWidget {
   final String verificationId;
-  const VerificationPage({Key? key, required this.verificationId})
-      : super(key: key);
+  const VerificationPage({super.key, required this.verificationId});
 
   @override
   State<VerificationPage> createState() => _VerificationPageState();

@@ -72,9 +72,9 @@ class StoreDetailsHeader extends StatefulWidget {
   final Store store;
 
   const StoreDetailsHeader({
-    Key? key,
+    super.key,
     required this.store,
-  }) : super(key: key);
+  });
 
   @override
   State<StoreDetailsHeader> createState() => _StoreDetailsHeaderState();

@@ -9,13 +9,13 @@ class DefaultButton extends StatelessWidget {
   final Color? backgroundColor;
 
   const DefaultButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onTap,
     this.leading,
     this.trailing,
     this.backgroundColor = AppColors.primary,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

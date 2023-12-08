@@ -1,45 +1,45 @@
 name: nectar
 description: Online groceries shopping app built with Flutter, Firebase and Bloc pattern.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-    sdk: ">=3.0.5 <4.0.0"
+    sdk: '>=3.0.5 <4.0.0'
 
 dependencies:
     bloc: ^8.1.2
-    cached_network_image: ^3.2.3
+    cached_network_image: ^3.3.0
     carousel_slider: ^4.2.1
-    cloud_firestore: ^4.8.4
-    dio: ^5.3.1
+    cloud_firestore: ^4.13.5
+    dio: ^5.4.0
     equatable: ^2.0.5
-    firebase_auth: ^4.7.2
-    firebase_core: ^2.15.0
-    firebase_crashlytics: ^3.3.4
-    firebase_storage: ^11.2.5
+    firebase_auth: ^4.15.2
+    firebase_core: ^2.24.2
+    firebase_crashlytics: ^3.4.8
+    firebase_storage: ^11.5.5
     flutter:
         sdk: flutter
     flutter_bloc: ^8.1.3
-    flutter_facebook_auth: ^6.0.0
-    flutter_map: ^5.0.0
-    flutter_svg: ^2.0.7
-    geolocator: ^9.0.2
-    google_sign_in: ^6.1.4
+    flutter_facebook_auth: ^6.0.3
+    flutter_map: ^6.1.0
+    flutter_svg: ^2.0.9
+    geolocator: ^10.1.0
+    google_sign_in: ^6.1.6
     hive: ^2.2.3
     hive_flutter: ^1.1.0
-    image_picker: ^1.0.1
+    image_picker: ^1.0.4
     intl_phone_field: ^3.2.0
     latlong2: ^0.9.0
-    package_info_plus: ^4.0.2
-    pinput: ^2.3.0
+    package_info_plus: ^5.0.1
+    pinput: ^3.0.1
     smooth_page_indicator: ^1.1.0
-    url_launcher: ^6.1.12
+    url_launcher: ^6.2.2
 
 dev_dependencies:
     flutter_test:
         sdk: flutter
 
-    flutter_lints: ^2.0.2
+    flutter_lints: ^3.0.1
     flutter_launcher_icons: ^0.13.1
 
 flutter:
@@ -50,10 +50,10 @@ flutter:
         - assets/png/
 
 flutter_launcher_icons:
-    image_path: "assets/icon/icon.png"
+    image_path: 'assets/icon/icon.png'
     android:
-        adaptive_icon_background: "#FFA500"
-        adaptive_icon_foreground: "assets/icon/icon.png"
+        adaptive_icon_background: '#FFA500'
+        adaptive_icon_foreground: 'assets/icon/icon.png'
         min_sdk_android: 21
     ios:
 # dart pub get
