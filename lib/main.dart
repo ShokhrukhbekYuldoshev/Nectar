@@ -5,25 +5,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'package:nectar/bloc/account/account_bloc.dart';
-import 'package:nectar/bloc/category_products/category_products_bloc.dart';
-import 'package:nectar/bloc/explore/explore_bloc.dart';
-import 'package:nectar/bloc/favorites/favorites_bloc.dart';
-import 'package:nectar/bloc/forgot_password/forgot_password_bloc.dart';
-import 'package:nectar/bloc/login/login_bloc.dart';
-import 'package:nectar/bloc/product/product_bloc.dart';
-import 'package:nectar/bloc/register/register_bloc.dart';
-import 'package:nectar/bloc/register_phone/register_phone_bloc.dart';
-import 'package:nectar/bloc/search/search_bloc.dart';
-import 'package:nectar/bloc/shop/shop_bloc.dart';
-import 'package:nectar/bloc/store_details/store_details_bloc.dart';
-import 'package:nectar/bloc/stores/stores_bloc.dart';
-import 'package:nectar/data/repositories/product_repository.dart';
-import 'package:nectar/data/services/hive_adapters.dart';
 import 'package:nectar/firebase_options.dart';
-import 'package:nectar/presentation/pages/splash_page.dart';
-import 'package:nectar/presentation/utils/app_colors.dart';
-import 'package:nectar/presentation/utils/app_router.dart';
+import 'package:nectar/src/app.dart';
+import 'package:nectar/src/bloc/account/account_bloc.dart';
+import 'package:nectar/src/bloc/category_products/category_products_bloc.dart';
+import 'package:nectar/src/bloc/explore/explore_bloc.dart';
+import 'package:nectar/src/bloc/favorites/favorites_bloc.dart';
+import 'package:nectar/src/bloc/forgot_password/forgot_password_bloc.dart';
+import 'package:nectar/src/bloc/login/login_bloc.dart';
+import 'package:nectar/src/bloc/product/product_bloc.dart';
+import 'package:nectar/src/bloc/register/register_bloc.dart';
+import 'package:nectar/src/bloc/register_phone/register_phone_bloc.dart';
+import 'package:nectar/src/bloc/search/search_bloc.dart';
+import 'package:nectar/src/bloc/shop/shop_bloc.dart';
+import 'package:nectar/src/bloc/store_details/store_details_bloc.dart';
+import 'package:nectar/src/bloc/stores/stores_bloc.dart';
+import 'package:nectar/src/data/repositories/product_repository.dart';
+import 'package:nectar/src/data/services/hive_adapters.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -92,31 +90,4 @@ Future<void> main() async {
       child: const MyApp(),
     ),
   );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Nectar',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
-        useMaterial3: true,
-        checkboxTheme: CheckboxThemeData(
-          fillColor: MaterialStateProperty.all<Color>(
-            AppColors.primary,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-        ),
-      ),
-      onGenerateRoute: AppRouter.onGenerateRoute,
-      home: const SplashPage(),
-    );
-  }
 }

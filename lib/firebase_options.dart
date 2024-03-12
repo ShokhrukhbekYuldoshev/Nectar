@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,9 +43,19 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyD4G5TU5zykASYeljhkaYLcxVtvyCqFUAU',
+    appId: '1:403064089399:web:63afc074dd00f3ad2008b2',
+    messagingSenderId: '403064089399',
+    projectId: 'nectar-8e579',
+    authDomain: 'nectar-8e579.firebaseapp.com',
+    storageBucket: 'nectar-8e579.appspot.com',
+    measurementId: 'G-P1M8WHDF82',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB-Ylj38gTsHRHY-8aM6--aWCKSJjY8_Es',
-    appId: '1:403064089399:android:b8b1a1660741ab6a2008b2',
+    appId: '1:403064089399:android:da7daab52531ae6e2008b2',
     messagingSenderId: '403064089399',
     projectId: 'nectar-8e579',
     storageBucket: 'nectar-8e579.appspot.com',
@@ -59,12 +63,23 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDE-hzoVCTN6nVhVWwrjMsFaaR1VVyLzU8',
-    appId: '1:403064089399:ios:6242d5c8d50d83692008b2',
+    appId: '1:403064089399:ios:4d33027914d747c02008b2',
     messagingSenderId: '403064089399',
     projectId: 'nectar-8e579',
     storageBucket: 'nectar-8e579.appspot.com',
     androidClientId: '403064089399-arrn7dmiuflnsmi2piboirrvjrmviisb.apps.googleusercontent.com',
     iosClientId: '403064089399-ofsc4ts7siul9vk0j5evlm5vcfh31u7i.apps.googleusercontent.com',
     iosBundleId: 'com.shokhrukhbek.nectar',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDE-hzoVCTN6nVhVWwrjMsFaaR1VVyLzU8',
+    appId: '1:403064089399:ios:4ced95a1090ac0822008b2',
+    messagingSenderId: '403064089399',
+    projectId: 'nectar-8e579',
+    storageBucket: 'nectar-8e579.appspot.com',
+    androidClientId: '403064089399-arrn7dmiuflnsmi2piboirrvjrmviisb.apps.googleusercontent.com',
+    iosClientId: '403064089399-87plnnlc58orf51svaaha5qj8i0n90br.apps.googleusercontent.com',
+    iosBundleId: 'com.shokhrukhbek.nectar.RunnerTests',
   );
 }
